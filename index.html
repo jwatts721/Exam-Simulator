@@ -9,8 +9,8 @@
     <style>
         .question { margin-bottom: 20px; }
         .timer { font-weight: bold; }
-        .question-label { font-weight: bold; }
-        .option-label { margin-left: 20px; }
+        .question-label { font-weight: bold; display: block; margin-top: 10px; }
+        .option-label { margin-left: 10px; }
         #submit-button { display: none; }
     </style>
 </head>
@@ -28,53 +28,31 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        const questions = [
-            {
-                question: "What is the capital of France?",
-                options: ["Paris", "London", "Rome", "Berlin"],
-                answer: "Paris"
-            },
-            {
-                question: "Which planet is known as the Red Planet?",
-                options: ["Earth", "Mars", "Jupiter", "Venus"],
-                answer: "Mars"
-            },
-            {
-                question: "What is the largest ocean on Earth?",
-                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-                answer: "Pacific Ocean"
-            },
-            {
-                question: "Who wrote the play 'Romeo and Juliet'?",
-                options: ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
-                answer: "William Shakespeare"
-            },
-            {
-                question: "What is the boiling point of water at sea level?",
-                options: ["90°C", "100°C", "110°C", "120°C"],
-                answer: "100°C"
-            }
-        ];
-
+        let questions = [];
         let currentQuestionIndex = 0;
         let timer;
         let timeLeft;
-        let answers = Array(questions.length).fill(null);
+        let answers = [];
 
-        async function loadConfig() {
+        async function loadConfigAndQuestions() {
             try {
-                const response = await fetch('config.json');
-                const config = await response.json();
+                const configResponse = await fetch('config.json');
+                const config = await configResponse.json();
                 timeLeft = config.timerDuration * 60;
+
+                const questionsResponse = await fetch('questions.json');
+                questions = await questionsResponse.json();
+                answers = Array(questions.length).fill(null);
+
                 displayQuestion(currentQuestionIndex);
                 timer = setInterval(updateTimer, 1000);
             } catch (error) {
-                console.error('Error loading config:', error);
+                console.error('Error loading config or questions:', error);
                 document.getElementById('timer').textContent = 'Error loading timer';
             }
         }
 
-        window.onload = loadConfig;
+        window.onload = loadConfigAndQuestions;
 
         function displayQuestion(index) {
             const quizDiv = document.getElementById('quiz');
@@ -99,10 +77,10 @@
 
                 const radioLabel = document.createElement('label');
                 radioLabel.className = 'option-label';
+                radioLabel.style.marginLeft = '10px';
                 radioLabel.textContent = option;
-                radioLabel.classList.add('ml-3');
+                radioLabel.insertBefore(radio, radioLabel.firstChild);
 
-                questionDiv.appendChild(radio);
                 questionDiv.appendChild(radioLabel);
                 questionDiv.appendChild(document.createElement('br'));
             });
