@@ -31,6 +31,7 @@
     <script>
         let questions = [];
         let numQuestions = 0;
+        let passingPercentage = 0;
         let currentQuestionIndex = 0;
         let timer;
         let timeLeft;
@@ -42,6 +43,7 @@
                 const config = await configResponse.json();
                 timeLeft = config.timerDuration * 60;
                 numQuestions = config.numQuestions;
+                passingPercentage = config.passingPercentage;
 
                 const questionsResponse = await fetch('questions.json');
                 const allQuestions = await questionsResponse.json();
@@ -144,6 +146,13 @@
             const result = document.getElementById('result');
             result.textContent = `You scored ${percentage.toFixed(2)}%`;
             result.style.display = 'block';
+
+            // Change color based on passing percentage
+            if (percentage >= passingPercentage) {
+                result.style.color = 'green';
+            } else {
+                result.style.color = 'red';
+            }
         }
     </script>
 </body>
