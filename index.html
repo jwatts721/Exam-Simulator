@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; }
         .question { margin-bottom: 20px; }
         .timer { font-weight: bold; }
-        .question-label { display: block; margin-top: 10px; font-weight: bold; }
+        .question-label { font-weight: bold; }
         .option-label { margin-left: 20px; }
         #submit-button { display: none; }
     </style>
 </head>
 <body>
-    <h1>Quiz</h1>
-    <div id="quiz"></div>
-    <button id="next-button" onclick="nextQuestion()">Next</button>
-    <button id="submit-button" onclick="submitQuiz()">Submit</button>
-    <p id="result"></p>
-    <p class="timer" id="timer">60:00</p>
+    <div class="container mt-5">
+        <h1 class="text-center">Quiz</h1>
+        <div id="quiz" class="mt-4"></div>
+        <button id="next-button" class="btn btn-primary mt-4" onclick="nextQuestion()">Next</button>
+        <button id="submit-button" class="btn btn-success mt-4" onclick="submitQuiz()">Submit</button>
+        <p id="result" class="mt-4"></p>
+        <p class="timer" id="timer">Loading...</p>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         const questions = [
             {
@@ -51,13 +58,23 @@
 
         let currentQuestionIndex = 0;
         let timer;
-        let timeLeft = 3600;
+        let timeLeft;
         let answers = Array(questions.length).fill(null);
 
-        window.onload = function() {
-            displayQuestion(currentQuestionIndex);
-            timer = setInterval(updateTimer, 1000);
-        };
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                const config = await response.json();
+                timeLeft = config.timerDuration * 60;
+                displayQuestion(currentQuestionIndex);
+                timer = setInterval(updateTimer, 1000);
+            } catch (error) {
+                console.error('Error loading config:', error);
+                document.getElementById('timer').textContent = 'Error loading timer';
+            }
+        }
+
+        window.onload = loadConfig;
 
         function displayQuestion(index) {
             const quizDiv = document.getElementById('quiz');
@@ -83,6 +100,7 @@
                 const radioLabel = document.createElement('label');
                 radioLabel.className = 'option-label';
                 radioLabel.textContent = option;
+                radioLabel.classList.add('ml-3');
 
                 questionDiv.appendChild(radio);
                 questionDiv.appendChild(radioLabel);
