@@ -12,6 +12,7 @@
         .question-label { font-weight: bold; display: block; margin-top: 10px; }
         .option-label { margin-left: 10px; }
         #submit-button { display: none; }
+        #result { display: none; text-align: center; }
     </style>
 </head>
 <body>
@@ -20,7 +21,7 @@
         <div id="quiz" class="mt-4"></div>
         <button id="next-button" class="btn btn-primary mt-4" onclick="nextQuestion()">Next</button>
         <button id="submit-button" class="btn btn-success mt-4" onclick="submitQuiz()">Submit</button>
-        <p id="result" class="mt-4"></p>
+        <h1 id="result" class="mt-4"></h1>
         <p class="timer" id="timer">Loading...</p>
     </div>
     <!-- Bootstrap JS and dependencies -->
@@ -123,7 +124,13 @@
             });
 
             const percentage = (score / questions.length) * 100;
-            document.getElementById('result').textContent = `You scored ${percentage.toFixed(2)}%`;
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('next-button').style.display = 'none';
+            document.getElementById('submit-button').style.display = 'none';
+            document.getElementById('timer').style.display = 'none';
+            const result = document.getElementById('result');
+            result.textContent = `You scored ${percentage.toFixed(2)}%`;
+            result.style.display = 'block';
         }
     </script>
 </body>
