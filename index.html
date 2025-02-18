@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .question { margin-bottom: 20px; }
+        .timer { font-weight: bold; }
+        .question-label { display: block; margin-top: 10px; font-weight: bold; }
+        .option-label { margin-left: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Submit</button>
+    <p id="result"></p>
+    <p class="timer" id="timer">60:00</p>
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Rome", "Berlin"],
+                answer: "Paris"
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Earth", "Mars", "Jupiter", "Venus"],
+                answer: "Mars"
+            },
+            {
+                question: "What is the largest ocean on Earth?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+                answer: "Pacific Ocean"
+            },
+            {
+                question: "Who wrote the play 'Romeo and Juliet'?",
+                options: ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
+                answer: "William Shakespeare"
+            },
+            {
+                question: "What is the boiling point of water at sea level?",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                answer: "100°C"
+            }
+        ];
+
+        let timer;
+        let timeLeft = 3600;
+
+        window.onload = function() {
+            displayQuiz();
+            timer = setInterval(updateTimer, 1000);
+        };
+
+        function displayQuiz() {
+            const quizDiv = document.getElementById('quiz');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+
+                const questionLabel = document.createElement('label');
+                questionLabel.className = 'question-label';
+                questionLabel.textContent = (index + 1) + '. ' + q.question;
+                questionDiv.appendChild(questionLabel);
+
+                q.options.forEach((option) => {
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = 'question' + index;
+                    radio.value = option;
+
+                    const radioLabel = document.createElement('label');
+                    radioLabel.className = 'option-label';
+                    radioLabel.textContent = option;
+
+                    questionDiv.appendChild(radio);
+                    questionDiv.appendChild(radioLabel);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+
+                quizDiv.appendChild(questionDiv);
+            });
+        }
+
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                submitQuiz();
+            } else {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timer);
+
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption && selectedOption.value === q.answer) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / questions.length) * 100;
+            document.getElementById('result').textContent = `You scored ${percentage.toFixed(2)}%`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "appian-acd101-exam-simulator",
+  "version": "1.0.0",
+  "description": "Appian ACD101 Exam Simulator",
+  "license": "ISC",
+  "author": "Jamal Watts",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
