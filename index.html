@@ -30,6 +30,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         let questions = [];
+        let numQuestions = 0;
         let currentQuestionIndex = 0;
         let timer;
         let timeLeft;
@@ -40,9 +41,13 @@
                 const configResponse = await fetch('config.json');
                 const config = await configResponse.json();
                 timeLeft = config.timerDuration * 60;
+                numQuestions = config.numQuestions;
 
                 const questionsResponse = await fetch('questions.json');
-                questions = await questionsResponse.json();
+                const allQuestions = await questionsResponse.json();
+
+                // Shuffle the questions and load only the specified number of questions
+                questions = shuffle(allQuestions).slice(0, numQuestions);
                 answers = Array(questions.length).fill(null);
 
                 displayQuestion(currentQuestionIndex);
@@ -54,6 +59,14 @@
         }
 
         window.onload = loadConfigAndQuestions;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
         function displayQuestion(index) {
             const quizDiv = document.getElementById('quiz');

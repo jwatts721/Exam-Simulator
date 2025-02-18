@@ -1,3 +1,4 @@
 {
-    "timerDuration": 60
+    "timerDuration": 60,
+    "numQuestions": 3
 }
