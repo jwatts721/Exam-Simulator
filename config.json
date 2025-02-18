@@ -1,5 +1,5 @@
 {
     "timerDuration": 60,
-    "numQuestions": 3,
+    "maxNumQuestion": 10,
     "passingPercentage": 73
 }

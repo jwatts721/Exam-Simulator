@@ -42,7 +42,7 @@
                 const configResponse = await fetch('config.json');
                 const config = await configResponse.json();
                 timeLeft = config.timerDuration * 60;
-                numQuestions = config.numQuestions;
+                numQuestions = config.maxNumQuestions;
                 passingPercentage = config.passingPercentage;
 
                 const questionsResponse = await fetch('questions.json');
