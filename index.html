@@ -10,12 +10,14 @@
         .timer { font-weight: bold; }
         .question-label { display: block; margin-top: 10px; font-weight: bold; }
         .option-label { margin-left: 20px; }
+        #submit-button { display: none; }
     </style>
 </head>
 <body>
     <h1>Quiz</h1>
     <div id="quiz"></div>
-    <button onclick="submitQuiz()">Submit</button>
+    <button id="next-button" onclick="nextQuestion()">Next</button>
+    <button id="submit-button" onclick="submitQuiz()">Submit</button>
     <p id="result"></p>
     <p class="timer" id="timer">60:00</p>
     <script>
@@ -47,42 +49,59 @@
             }
         ];
 
+        let currentQuestionIndex = 0;
         let timer;
         let timeLeft = 3600;
+        let answers = Array(questions.length).fill(null);
 
         window.onload = function() {
-            displayQuiz();
+            displayQuestion(currentQuestionIndex);
             timer = setInterval(updateTimer, 1000);
         };
 
-        function displayQuiz() {
+        function displayQuestion(index) {
             const quizDiv = document.getElementById('quiz');
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
+            quizDiv.innerHTML = '';
 
-                const questionLabel = document.createElement('label');
-                questionLabel.className = 'question-label';
-                questionLabel.textContent = (index + 1) + '. ' + q.question;
-                questionDiv.appendChild(questionLabel);
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
 
-                q.options.forEach((option) => {
-                    const radio = document.createElement('input');
-                    radio.type = 'radio';
-                    radio.name = 'question' + index;
-                    radio.value = option;
+            const questionLabel = document.createElement('label');
+            questionLabel.className = 'question-label';
+            questionLabel.textContent = (index + 1) + '. ' + questions[index].question;
+            questionDiv.appendChild(questionLabel);
 
-                    const radioLabel = document.createElement('label');
-                    radioLabel.className = 'option-label';
-                    radioLabel.textContent = option;
+            questions[index].options.forEach((option) => {
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'question' + index;
+                radio.value = option;
+                radio.onclick = function() {
+                    answers[index] = option;
+                };
 
-                    questionDiv.appendChild(radio);
-                    questionDiv.appendChild(radioLabel);
-                    questionDiv.appendChild(document.createElement('br'));
-                });
+                const radioLabel = document.createElement('label');
+                radioLabel.className = 'option-label';
+                radioLabel.textContent = option;
 
-                quizDiv.appendChild(questionDiv);
+                questionDiv.appendChild(radio);
+                questionDiv.appendChild(radioLabel);
+                questionDiv.appendChild(document.createElement('br'));
             });
+
+            quizDiv.appendChild(questionDiv);
+
+            if (index === questions.length - 1) {
+                document.getElementById('next-button').style.display = 'none';
+                document.getElementById('submit-button').style.display = 'inline';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion(currentQuestionIndex);
+            }
         }
 
         function updateTimer() {
@@ -102,8 +121,7 @@
 
             let score = 0;
             questions.forEach((q, index) => {
-                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-                if (selectedOption && selectedOption.value === q.answer) {
+                if (answers[index] === q.answer) {
                     score++;
                 }
             });
