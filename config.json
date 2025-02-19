@@ -1,5 +1,6 @@
 {
     "timerDuration": 60,
-    "maxNumQuestion": 10,
-    "passingPercentage": 73
+    "numQuestions": 10,
+    "passingPercentage": 73,
+    "questionsSourceFile": "general-questions.json"
 }

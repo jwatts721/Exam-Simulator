@@ -10,7 +10,9 @@
         .question { margin-bottom: 20px; }
         .timer { font-weight: bold; position: absolute; top: 10px; right: 10px; }
         .question-label { font-weight: bold; display: block; margin-top: 10px; }
-        .option-label { margin-left: 10px; }
+        .option-label { margin-left: 10px; display: block; }
+        .correct { background-color: #d4edda; } /* Bootstrap success background */
+        .incorrect { background-color: #f8d7da; } /* Bootstrap danger background */
         #submit-button { display: none; }
         #result { display: none; text-align: center; }
     </style>
@@ -18,6 +20,10 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Quiz</h1>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="showAnswersCheckbox">
+            <label class="form-check-label" for="showAnswersCheckbox">Show Answers</label>
+        </div>
         <div id="quiz" class="mt-4"></div>
         <button id="next-button" class="btn btn-primary mt-4" onclick="nextQuestion()">Next</button>
         <button id="submit-button" class="btn btn-success mt-4" onclick="submitQuiz()">Submit</button>
@@ -42,10 +48,10 @@
                 const configResponse = await fetch('config.json');
                 const config = await configResponse.json();
                 timeLeft = config.timerDuration * 60;
-                numQuestions = config.maxNumQuestions;
+                numQuestions = config.numQuestions;
                 passingPercentage = config.passingPercentage;
 
-                const questionsResponse = await fetch('questions.json');
+                const questionsResponse = await fetch(`questions-source/${config.questionsSourceFile}`);
                 const allQuestions = await questionsResponse.json();
 
                 // Shuffle the questions and load only the specified number of questions
@@ -82,13 +88,16 @@
             questionLabel.textContent = (index + 1) + '. ' + questions[index].question;
             questionDiv.appendChild(questionLabel);
 
-            questions[index].options.forEach((option) => {
+            questions[index].options.forEach((option, optionIndex) => {
                 const radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.name = 'question' + index;
                 radio.value = option;
                 radio.onclick = function() {
                     answers[index] = option;
+                    if (document.getElementById('showAnswersCheckbox').checked) {
+                        highlightAnswer(index, option, optionIndex);
+                    }
                 };
 
                 const radioLabel = document.createElement('label');
@@ -98,7 +107,6 @@
                 radioLabel.insertBefore(radio, radioLabel.firstChild);
 
                 questionDiv.appendChild(radioLabel);
-                questionDiv.appendChild(document.createElement('br'));
             });
 
             quizDiv.appendChild(questionDiv);
@@ -107,6 +115,21 @@
                 document.getElementById('next-button').style.display = 'none';
                 document.getElementById('submit-button').style.display = 'inline';
             }
+        }
+
+        function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
+            const questionDiv = document.querySelector('.question');
+            const options = questionDiv.querySelectorAll('.option-label');
+
+            options.forEach((option, index) => {
+                option.classList.remove('correct', 'incorrect'); // Remove previous highlights
+                if (questions[questionIndex].answer === option.textContent.trim()) {
+                    option.classList.add('correct');
+                }
+                if (selectedOptionIndex === index && selectedOption !== questions[questionIndex].answer) {
+                    option.classList.add('incorrect');
+                }
+            });
         }
 
         function nextQuestion() {
