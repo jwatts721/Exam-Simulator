@@ -9,3 +9,10 @@ To install the necessary packages, run:
 To start the application, run:
 
     npm start
+
+Configure the application by changing values in the config.json.
+Options available: 
+- timerDuration - amount of time for the exam in minutes
+- maxNumQuestions - the total amount of questions in the exam
+- passingPercentage - the percentage for passing the exam
+- questionsSourceFile - the source file for all of the questions
