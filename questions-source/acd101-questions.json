@@ -1,0 +1,55 @@
+{
+    "appTitle": "Appien ACD101 Exam Simulator",
+    "questions": [
+        {
+            "question": "What is the full meaning of ACD?",
+            "options": ["Appien Certified Developer", "Appien Certified Designer", "Appien Certified Developer", "Appien Certified Developer"],
+            "answer": "Appien Certified Developer"
+        },
+        {
+            "question": "What is the full meaning of SAIL?",
+            "options": ["Smart Application Interface Language", "Smart Application Interface Language", "Smart Application Interface Language", "Smart Application Interface Language"],
+            "answer": "Smart Application Interface Language"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        },
+        {
+            "question": "What is the full meaning of CDT?",
+            "options": ["Custom Data Type", "Custom Data Type"],
+            "answer": "Custom Data Type"
+        }
+    ]
+}

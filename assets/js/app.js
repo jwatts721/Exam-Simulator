@@ -18,10 +18,10 @@ async function loadConfigAndQuestions() {
         const allQuestions = await questionsResponse.json();
 
         // Shuffle the questions and load only the specified number of questions
-        questions = shuffle(allQuestions).slice(0, numQuestions);
+        questions = shuffle(allQuestions.questions).slice(0, numQuestions);
         answers = Array(questions.length).fill(null);
 
-        displayTitle(config.appTitle);
+        displayTitle(allQuestions.appTitle);
         displayQuestion(currentQuestionIndex);
         timer = setInterval(updateTimer, 1000);
     } catch (error) {

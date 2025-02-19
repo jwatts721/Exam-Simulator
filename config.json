@@ -1,5 +1,4 @@
 {
-    "appTitle": "Quiz App",
     "timerDuration": 60,
     "maxNumQuestions": 5,
     "passingPercentage": 73,
