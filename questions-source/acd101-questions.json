@@ -1,55 +1,875 @@
 {
-    "appTitle": "Appien ACD101 Exam Simulator",
+    "appTitle": "Appian ACD101 Exam Simulator",
     "questions": [
         {
-            "question": "What is the full meaning of ACD?",
-            "options": ["Appien Certified Developer", "Appien Certified Designer", "Appien Certified Developer", "Appien Certified Developer"],
-            "answer": "Appien Certified Developer"
+            "question": "You have a record action that should only be visible to certain users under conditions specified by an expression. How should you configure this?",
+            "options": [
+                "Set security on the process model.",
+                "Set permissions directly on the user object.",
+                "Set security on the record action."
+            ],
+            "answer": "Set security on the record action."
         },
         {
-            "question": "What is the full meaning of SAIL?",
-            "options": ["Smart Application Interface Language", "Smart Application Interface Language", "Smart Application Interface Language", "Smart Application Interface Language"],
-            "answer": "Smart Application Interface Language"
+            "question": "Which Appian feature is used to automate repetitive manual tasks such as extracting data from a system for which there is no API?",
+            "options": [
+                "RPA",
+                "Process Mining",
+                "Connected Systems"
+            ],
+            "answer": "RPA"
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "Review the following expression rule:\nunion(ri!fruit, ri!vegetables)\nThe rule inputs are configured as text arrays.\nWhat is the expected output?",
+            "options": [
+                "All items in ri!fruit followed by items in ri!vegetables, including duplicate values.",
+                "Only items that are in both ri!fruit and ri!vegetables.",
+                "All items in ri!fruit and ri!vegetables combined, with duplicates removed."
+            ],
+            "answer": "All items in ri!fruit and ri!vegetables combined, with duplicates removed."
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "You need to pass data into a process from other parts of your Appian application. Which configuration is required in your process model?",
+            "options": [
+                "Toggle the Parameter field to \"True\" on the configuration of a process variable.",
+                "Create process variables on the Data Management tab of Process Model Properties.",
+                "Add an interface as a Process Start Form."
+            ],
+            "answer": "Toggle the Parameter field to \"True\" on the configuration of a process variable."
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "You have a record type, ABC_Author, backed by a database table. You need to retrieve the total number of authors without loading all the data. According to Appian best practices, which code snippet accomplishes this goal in the most efficient way?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "A"
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "You are creating a new customer onboarding application. Documents are required from customers for verification and onboarding purposes. You need to store these documents within Appian. Which two areas in Appian should you configure? (Choose two.)",
+            "options": [
+                "Knowledge Center",
+                "Decision Object",
+                "Folder",
+                "Feed"
+            ],
+            "answer": "Knowledge Center, Folder"
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "Where can an Appian Developer connect with and share their expertise with other Appian Developers?",
+            "options": [
+                "Appian Learning Paths via Appian Academy",
+                "Appian Knowledge Base",
+                "Appian Community discussions"
+            ],
+            "answer": "Appian Community discussions"
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "You created and published a new process model. The process model has a start form with two synchronous subprocesses with 40 and 66 nodes each. All nodes are chained from the start node through the subprocesses to the end node. After the tasks and subprocesses, there is a second User Input Task in which the user can confirm the entries and add a comment. When testing as a normal Acme business user, you see that the confirmation screen is not shown to you. What might be the reason for this behavior?",
+            "options": [
+                "The maximum number of activity chained nodes is exceeded and breaks.",
+                "The second User Input Task is assigned to the process initiator.",
+                "The second User Input Task is assigned to the Acme business user group."
+            ],
+            "answer": "The maximum number of activity chained nodes is exceeded and breaks."
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type", "Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "Your customer wants to change the name of a field of an existing Custom Data Type (CDT) to match a renamed database field. The CDT is backed by a database entity, whose data store has the Automatically Update Database Schema option disabled. The old column name was BIRTHDATE and the new column name is DATE_OF_BIRTH. How should you proceed?",
+            "options": [
+                "Download the CDT as XSD, make the appropriate changes, and re-upload the XSD. Verify and publish the data store.",
+                "Rename the field in the record type in Appian to automatically update the CDT field.",
+                "Rename the field in the CDT in Appian. Verify and publish the data store."
+            ],
+            "answer": "Download the CDT as XSD, make the appropriate changes, and re-upload the XSD. Verify and publish the data store."
         },
         {
-            "question": "What is the full meaning of CDT?",
-            "options": ["Custom Data Type", "Custom Data Type"],
-            "answer": "Custom Data Type"
+            "question": "Which step can be critical in passing information from a form back to a process model?",
+            "options": [
+                "Configure the Data Management tab.",
+                "Configure the activity class parameters of a Write to Data Store Entity node.",
+                "Configure inputs on the Data tab of a User Input Task."
+            ],
+            "answer": "Configure inputs on the Data tab of a User Input Task."
+        },
+        {
+            "question": "Review the following expression rule:\nri!name is defined as \"Maria\". ri!directory is defined as the following:\nWhat is the expected output?",
+            "options": [
+                "Maria",
+                "0",
+                "1"
+            ],
+            "answer": "1"
+        },
+        {
+            "question": "You are configuring a Related Action for an entity-backed record type. What is the proper domain prefix to reference the record data that will be passed into the Process Model as context for the Record Action?",
+            "options": [
+                "ac!",
+                "pv!",
+                "rv!"
+            ],
+            "answer": "rv!"
+        },
+        {
+            "question": "You are configuring an employee onboarding User Input Task that will be assigned to the human resources group. Based on the default behavior for task assignments, which statement is valid?",
+            "options": [
+                "Multiple users can accept the task at the same time up until the point that the first user completes it.",
+                "For each user in the group, a task is generated and assigned to them to complete.",
+                "One user in the group can accept the task for themselves and complete it."
+            ],
+            "answer": "One user in the group can accept the task for themselves and complete it."
+        },
+        {
+            "question": "You are using a local variable in an expression rule to describe the height of an applicant. Which statement correctly describes the application of Appian best practices for naming your local variable?",
+            "options": [
+                "local!hoaa - This employs the naming convention of abbreviating \"Height of an applicant\" to minimize both the typing required by developers and the length of code Appian is required to parse.",
+                "local!applicantHeight - This employs the naming convention of specifically describing the value contained by the variable.",
+                "local!x - This employs the naming convention of using algebraic variables for a value that may either change over time or be used by future developers for other purposes."
+            ],
+            "answer": "local!applicantHeight - This employs the naming convention of specifically describing the value contained by the variable."
+        },
+        {
+            "question": "You need to start a process using an email trigger. How should you configure this process model using the Process Model Properties dialog?",
+            "options": [
+                "Go to File > Properties > Alerts. Configure the Custom Alert settings.",
+                "Go to File > Properties. Set the proper Process Display Name.",
+                "Go to File > Properties. Select the Public Events checkbox to allow anyone to fire triggers."
+            ],
+            "answer": "Go to File > Properties. Select the Public Events checkbox to allow anyone to fire triggers."
+        },
+        {
+            "question": "What are three ways to trigger a process from a process model? (Choose three.)",
+            "options": [
+                "Use a subprocess.",
+                "Call a web API.",
+                "Use a!recordActionItem().",
+                "Use a Start Process smart service.",
+                "Run a!startProcess() from a script task."
+            ],
+            "answer": "Call a web API, Use a Start Process smart service, Run a!startProcess() from a script task"
+        },
+        {
+            "question": "You have two record types: ACME_Student and ACME_Class. You need to add a many-to-many relationship between these two record types. What should you do?",
+            "options": [
+                "Create a new record type with data sync enabled, then add a one-to-many relationship from each record type (ACME_Student and ACME_Class) to the new mapping record type.",
+                "This relationship cannot be modeled using record type relationships.",
+                "Add the relationship from either ACME_Student or ACME_Class, then select Many-to-Many under Relationship Type, and add the corresponding keys."
+            ],
+            "answer": "Create a new record type with data sync enabled, then add a one-to-many relationship from each record type (ACME_Student and ACME_Class) to the new mapping record type."
+        },
+        {
+            "question": "You need to add a new attribute to your database-backed synced Acme employee record. What should you do?",
+            "options": [
+                "Add the new field manually to the ACME_Employee database table and run a database script to resync the Acme employee record.",
+                "In the record data model, you add the new field in the ADD SOURCE FIELDS. Save the field with the Update Table checkbox active.",
+                "In the record data model, you add the new field with ADD RELATIONSHIPS. Save the newly created relationship and use the field."
+            ],
+            "answer": "In the record data model, you add the new field in the ADD SOURCE FIELDS. Save the field with the Update Table checkbox active."
+        },
+        {
+            "question": "You configured a Custom Data Type (CDT), ACME_video. You need to set up a node in your process model to write a new video as a row in the CDT's corresponding database table. Which set of inputs must you configure on your Write to Data Store smart service node?",
+            "options": [
+                "The data store and an input corresponding to each field of the ACME_video CDT.",
+                "The data store entity and an input of type ACME_video.",
+                "The data store and an input of type ACME_video."
+            ],
+            "answer": "The data store entity and an input of type ACME_video."
+        },
+        {
+            "question": "Review the following code snippet:\nindex({\"a\", \"b\", \"c\"}, 1, \"x\")\nWhich value is returned?",
+            "options": [
+                "a",
+                "b",
+                "c",
+                "x"
+            ],
+            "answer": "a"
+        },
+        {
+            "question": "Which set of out-of-the-box features is only available when data sync is enabled on a record type?",
+            "options": [
+                "Generate record actions\nDefine record type object security\nAdd custom record fields",
+                "Define record type relationships\nAdd custom record fields\nConfigure record-level security",
+                "Define record type relationships\nAdd hidden record fields\nConfigure record-level security"
+            ],
+            "answer": "Define record type relationships\nAdd custom record fields\nConfigure record-level security"
+        },
+        {
+            "question": "Which statement about local variables is valid?",
+            "options": [
+                "The data type of a local variable is determined by its value.",
+                "Local variables can only store primitive data types, such as numbers and strings.",
+                "Local variables must have an initial value set when defining them."
+            ],
+            "answer": "The data type of a local variable is determined by its value."
+        },
+        {
+            "question": "Which Appian feature can help the implementation team analyze the event log data of an existing process?",
+            "options": [
+                "RPA",
+                "Process Mining",
+                "Workflow"
+            ],
+            "answer": "Process Mining"
+        },
+        {
+            "question": "Review the following code snippet:\ndisplayvalue(1, {0, 1, 2}, {\"Low\", \"Medium\", \"High\"}, \"Unknown\")\nThe definition of displayvalue is:\nTries to match a value in a given array with a value at the same index in a replacement array and returns either the value at the same index or a default value if the value is not found.\nWhat does this code snippet return?",
+            "options": [
+                "Low",
+                "Medium",
+                "High"
+            ],
+            "answer": "Medium"
+        },
+        {
+            "question": "You receive a bug ticket that states \"After selecting a value for the drop-down field, the value disappears.\" You investigate and notice that when you select the drop-down, the proper choice labels display. When you select an option, the value updates properly in the corresponding rule input. What is the issue and how can you fix this bug?",
+            "options": [
+                "The value parameter is improperly configured on the drop-down component. You need to map the value to the proper rule input or variable.",
+                "The user group for the lookup table is incorrect. You need to add the user to the proper group.",
+                "The choice labels parameter of the drop-down field is not configured as a list. You need to wrap the value with curly brackets."
+            ],
+            "answer": "The value parameter is improperly configured on the drop-down component. You need to map the value to the proper rule input or variable."
+        },
+        {
+            "question": "ACME Automobile uses Appian to manage their vehicle fleet. Vehicle records can have a status of either \"active\" or \"inactive\". Users are primarily concerned with active vehicles and want to see only those records by default when viewing the Vehicle records list. However, it is important for users to be able to see the unfiltered list of Vehicle records on demand to address occasional auditing requests from managers. Which configuration supports the desired Vehicle record list behavior?",
+            "options": [
+                "Visibility on the Status column in the Vehicle record list set with conditional logic.",
+                "A source filter set to exclude vehicles with status \"inactive\".",
+                "A user filter for the status field with a default option corresponding to \"active\"."
+            ],
+            "answer": "A user filter for the status field with a default option corresponding to \"active\"."
+        },
+        {
+            "question": "You write an expression that checks the validity of an email address. Which three scenarios should you configure as test cases? (Choose three.)",
+            "options": [
+                "An invalid email address that is missing the @-character: \"john.doeexample.com\".",
+                "An invalid email address: null.",
+                "A valid email address: \"jane.doe@example.com\".",
+                "The mail server is unavailable."
+            ],
+            "answer": "An invalid email address that is missing the @-character: \"john.doeexample.com\"., An invalid email address: null., A valid email address: \"jane.doe@example.com\"."
+        },
+        {
+            "question": "You are creating a new interface object to display a pie chart. The data for the chart is stored in a local variable in the parent interface object which references your child interface. In terms of performance, what is the most efficient method to access the data required for the pie chart?",
+            "options": [
+                "Create a rule input on the child interface and pass the local variable data from the parent interface.",
+                "Reference the local variable directly from the child Interface using a process report.",
+                "Query the data separately in the child interface to avoid passing it from the parent interface."
+            ],
+            "answer": "Create a rule input on the child interface and pass the local variable data from the parent interface."
+        },
+        {
+            "question": "When applying a default filter to a record type, what is a true statement for excluded data?",
+            "options": [
+                "The data does not show up in the record list. End-users are unable to clear the filter condition to view the data.",
+                "The data does not show up in the record list, but can be accessed by end-users using a direct link to a record view.",
+                "The data does not show up in the record list, but end-users can clear the filter condition to view the data."
+            ],
+            "answer": "The data does not show up in the record list, but end-users can clear the filter condition to view the data."
+        },
+        {
+            "question": "How can you prevent users from accessing Tempo?",
+            "options": [
+                "Remove the users from the Tempo Users system group.",
+                "Change the default User Start Page.",
+                "Ensure the user is in the Application Users group, which by default does not have access to Tempo."
+            ],
+            "answer": "Remove the users from the Tempo Users system group."
+        },
+        {
+            "question": "You are creating a form used to order a pizza. You use a radio button component for the selection. The pizza selection labels include a list of toppings. You do not want the selection labels to be truncated. Which layout should you choose?",
+            "options": [
+                "Compact",
+                "Grid",
+                "Stacked"
+            ],
+            "answer": "Stacked"
+        },
+        {
+            "question": "A user needs to navigate from a record summary to an external URL. Which interface component can be used to support this goal?",
+            "options": [
+                "Button",
+                "Record Link",
+                "Card Layout with a link"
+            ],
+            "answer": "Card Layout with a link"
+        },
+        {
+            "question": "You are developing an expression rule. You need to find information on employing an Appian function that you have not used before. For more information on the Appian function, what should you do first?",
+            "options": [
+                "Look up the function in the Appian Documentation.",
+                "Search the Appian Knowledge Base Articles.",
+                "Post a question on Appian Community."
+            ],
+            "answer": "Look up the function in the Appian Documentation."
+        },
+        {
+            "question": "Which code snippet calls the interface APP_RecordDashboard while following best practices for passing in values for \"recordId\" and \"firstName\"?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "B"
+        },
+        {
+            "question": "You are configuring a local variable on an interface to store the date and time that the username field was last modified. The local variables are currently configured as follows: Which a!refreshVariable configuration should be added so that local!usernameLastModified stores the correct timestamp?",
+            "options": [
+                "refreshInterval: 0",
+                "refreshOnVarChange: local!username",
+                "refreshAlways: true"
+            ],
+            "answer": "refreshOnVarChange: local!username"
+        },
+        {
+            "question": "How do you refer to metadata of a process model object within process model expressions? For example: the creator, name, or description.",
+            "options": [
+                "Process Properties, referred to in process model expressions using the pp! domain.",
+                "Process Variables, referred to in process model expressions using the pv! domain.",
+                "Process Model Properties, referred to in process model expressions using the pm! domain."
+            ],
+            "answer": "Process Model Properties, referred to in process model expressions using the pm! domain."
+        },
+        {
+            "question": "You receive the following error message after creating a dropdown field: What could be the problem?",
+            "options": [
+                "The choiceLabels and choiceValues datatypes do not match.",
+                "The choiceValues has too few values.",
+                "The choiceLabels have too few labels."
+            ],
+            "answer": "The choiceValues has too few values."
+        },
+        {
+            "question": "You are working on a process model \"VIM Update Vehicle.\" You want to call another process \"VIM Get Service Date\" that accepts pv!vehicleId as a process parameter and sets a value for pv!serviceDate. The next node in VIM Update Vehicle depends on the value of pv!serviceDate. Which node should you use to execute \"VIM Get Service Date\" from VIM Update Vehicle?",
+            "options": [
+                "Start Process smart service",
+                "Asynchronous subprocess with activity chaining",
+                "Synchronous subprocess with input and output variables configured"
+            ],
+            "answer": "Synchronous subprocess with input and output variables configured"
+        },
+        {
+            "question": "Which two scenarios are ideal for using Appian Portals? (Choose two.)",
+            "options": [
+                "A manager wants to obtain a view of their team's performance.",
+                "A retail customer wants to conduct a public survey for their recently launched product.",
+                "An employee who does not have an account wants to register for their company's vehicle fleet a management system.",
+                "A user needs to submit support requests when they are using their mobile device in areas with bad network coverage."
+            ],
+            "answer": "A retail customer wants to conduct a public survey for their recently launched product., An employee who does not have an account wants to register for their company's vehicle fleet a management system."
+        },
+        {
+            "question": "You have two Custom Data Types (CDT): ACME_invoice and ACME_invoiceItem that have a flat relationship. The invoice item table has a field that is a foreign key to the invoice table. You are leveraging the database to automatically generate their primary keys. How should you structure the process model to add a new invoice and the new invoice items to the system?",
+            "options": [
+                "1. Write to Multiple Data Store Entities smart service (Writing to the ACME_invoiceItem table and ACME_invoice table).",
+                "1. Write to Data Store Entity smart service (Writing to the ACME_invoiceItem table).\n2. Script Task to update foreign keys.\n3. Write to Data Store Entity smart service (Writing to the ACME_invoice table).",
+                "1. Write to Data Store Entity smart service (Writing to the ACME_invoice table).\n2. Script Task to update foreign keys.\n3. Write to Data Store Entity smart service (Writing to the ACME_invoiceItem table)."
+            ],
+            "answer": "1. Write to Data Store Entity smart service (Writing to the ACME_invoice table).\n2. Script Task to update foreign keys.\n3. Write to Data Store Entity smart service (Writing to the ACME_invoiceItem table)."
+        },
+        {
+            "question": "After selecting a record, a user wants to initiate an activity in the context of that selected record. You start by creating the process model that implements this activity. What should you do next?",
+            "options": [
+                "Add the process model as a record list action to that record.",
+                "Configure a site page as an action to kick off the process model.",
+                "Add the process model as a record related action to that record."
+            ],
+            "answer": "Add the process model as a record related action to that record."
+        },
+        {
+            "question": "What is an Appian best practice for calling interface rules on your interface?",
+            "options": [
+                "Call the interface rule on a rule input.",
+                "Use keyword syntax.",
+                "Always use consistent ordering of rule parameters."
+            ],
+            "answer": "Use keyword syntax"
+        },
+        {
+            "question": "You are running a process instance and an error occurs on an unattended node. What happens to your process when this error occurs?",
+            "options": [
+                "The process is not paused. Parallel paths in the process continue to proceed. An alert is sent to the appropriate recipients (usually admins). These nodes are not included in the num_problem_tasks process metric in process reports.",
+                "The process is paused. Parallel paths in the process are stopped. No alerts are sent. These nodes are included in the num_problem_tasks process metric in process reports.",
+                "The process is paused. Parallel paths in the process are stopped. An alert Is sent to the process initiator. These nodes are included in the num_problem_tasks process metric in process reports."
+            ],
+            "answer": "The process is not paused. Parallel paths in the process continue to proceed. An alert is sent to the appropriate recipients (usually admins). These nodes are not included in the num_problem_tasks process metric in process reports."
+        },
+        {
+            "question": "Which option best describes the primary purpose of the interface design object?",
+            "options": [
+                "Provides a method for an Appian application to interact with an external application or service.",
+                "Provides a method for end users to interact with an Appian application.",
+                "Provides a method for an Appian application to interact with a database."
+            ],
+            "answer": "Provides a method for end users to interact with an Appian application."
+        },
+        {
+            "question": "You received a support ticket where the user claims that nothing happens when they click the button to complete a task. You confirm that the user is assigned to the task. What is a possible reason for this problem?",
+            "options": [
+                "The user was not in the user group configured for the process model security.",
+                "The process report that drives the runtime database does not have security set properly.",
+                "The button was not configured to submit the form."
+            ],
+            "answer": "The button was not configured to submit the form."
+        },
+        {
+            "question": "You want to add a script task in between two User Input Tasks assigned to the same user. What needs to be configured so that the user sees the second form immediately after submitting the first?",
+            "options": [
+                "Set all process variables as parameters.",
+                "Enable activity chaining.",
+                "Run the script task as synchronous."
+            ],
+            "answer": "Enable activity chaining."
+        },
+        {
+            "question": "What is the Production environment used for?",
+            "options": [
+                "Allowing business users to test the application.",
+                "Allowing developers to make updates to the application.",
+                "Allowing business users to use the final version of the application."
+            ],
+            "answer": "Allowing business users to use the final version of the application."
+        },
+        {
+            "question": "You need to create a record type of only active Products using an existing database table: PRODUCT. The PRODUCT table consists of the following columns: ID(INT(11)), NAME (VARCHAR(255)), DESCRIPTION (VARCHAR(1000)), IS_ACTIVE (BIT), CREATED_BY (VARCHAR(255)), CREATED_ON (TIMESTAMP), MODIFIED_BY (VARCHAR(255)), MODIFIED_ON (TIMESTAMP). What is a valid way to create this record type?",
+            "options": [
+                "Create a record type with data sync enabled using the PRODUCT table, and apply a source filter on IS_ACTIVE to filter out inactive products.",
+                "Create a record type with data sync enabled using the PRODUCT table, and create a user filter using IS_ACTIVE.",
+                "Create a record type without data sync enabled using the PRODUCT table, and apply record-level security to filter out inactive products."
+            ],
+            "answer": "Create a record type with data sync enabled using the PRODUCT table, and apply a source filter on IS_ACTIVE to filter out inactive products."
+        },
+        {
+            "question": "How do you pass information from a process model to a form?",
+            "options": [
+                "Configure the rule inputs table on the Forms/Process Start Form tab to correctly refer to the values from your process model.",
+                "Configure the interface so that the local variables refer directly to values in the ac! (activity class) domain.",
+                "Configure the process properties on the Data Management tab to correctly refer to your form rule inputs."
+            ],
+            "answer": "Configure the rule inputs table on the Forms/Process Start Form tab to correctly refer to the values from your process model."
+        },
+        {
+            "question": "Which three of the following are valid page types in a site? (Choose three.)",
+            "options": [
+                "Record List",
+                "Tempo",
+                "News Feed",
+                "Interface",
+                "Action"
+            ],
+            "answer": "Record List, Action, Interface"
+        },
+        {
+            "question": "What are the three parts of a test case in Appian? (Choose three.)",
+            "options": [
+                "Assertion",
+                "SQL Scripts",
+                "Test inputs",
+                "Context Data",
+                "Test Outputs"
+            ],
+            "answer": "Assertion, Test inputs, Test Outputs"
+        },
+        {
+            "question": "A business has large amounts of process data that is difficult for humans to analyze. What is the best Appian feature to help this business gain insights on the data?",
+            "options": [
+                "Process Modeler",
+                "Process Mining",
+                "RPA"
+            ],
+            "answer": "Process Mining"
+        },
+        {
+            "question": "You are building an interface that displays flight departure times. The data must update automatically every minute and without user interaction. How should this be configured?",
+            "options": [
+                "Query the data inside a local variable used to display the departure times. Set the refreshinterval to 1.",
+                "Query the data inside a local variable used to display the departure times. Set the refreshAlways to True.",
+                "Add a one minute timer to the process model to query the data and refresh the interface."
+            ],
+            "answer": "Query the data inside a local variable used to display the departure times. Set the refreshinterval to 1."
+        },
+        {
+            "question": "Review the following expression rule: The updatedDate is of type Date, and current datetime is 01/01/2023 5:00 PM GMT+00:00. What is the output of this expression if the value of updatedDate was saved as today() one(1) hour ago?",
+            "options": [
+                "Updated Today",
+                "Updated 01/01/2023",
+                "Updated 01/01/2023 4:00 PM GMT+00:00"
+            ],
+            "answer": "Updated Today"
+        },
+        {
+            "question": "Review the following expression rule: What is the expected output if ri!userComment is 0123456789ABC?",
+            "options": [
+                "{0123456789,…}",
+                "0123456789…",
+                "0123456789ABC"
+            ],
+            "answer": "0123456789…"
+        },
+        {
+            "question": "Which types of objects can be called using the rule! domain prefix?",
+            "options": [
+                "Decisions, expression rules, interfaces, and integrations",
+                "Process models, integrations, expression rules, and constants",
+                "Connected systems, records, expression rules, and interfaces"
+            ],
+            "answer": "Decisions, expression rules, interfaces, and integrations"
+        },
+        {
+            "question": "Where can you read the release notes for each Appian version?",
+            "options": [
+                "Appian Community AppMarket",
+                "Appian Academy",
+                "Appian Documentation"
+            ],
+            "answer": "Appian Documentation"
+        },
+        {
+            "question": "You have a record type, ABC_Author, backed by a database table. You need to retrieve the number of authors for each country. Review the following basic query expression: Which code snippet should be added to the fields parameter?",
+            "options": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+            ],
+            "answer": "E"
+        },
+        {
+            "question": "You want to grant permission for a group to move a file from an old folder to a new folder. Which security configuration should you set for this group?",
+            "options": [
+                "Viewer permission for the process model that will move the document.",
+                "Administrator permission for both folders.",
+                "Editor permission for the file."
+            ],
+            "answer": "Administrator permission for both folders."
+        },
+        {
+            "question": "Review the following interface definition: The interface does not display, and you get an error message. What is the cause of the error?",
+            "options": [
+                "localinput needs to be configured with a!refreshVariable().",
+                "len() is not a valid function and length() should be used instead.",
+                "localinput is being referenced outside the scope it is defined in."
+            ],
+            "answer": "localinput is being referenced outside the scope it is defined in."
+        },
+        {
+            "question": "You want to calculate the deadline for a review, which is determined by applying a formula that takes the characteristics of the review into account. This formula for calculating a review deadline is standard across the organization according to policy. An Appian object was used to apply the calculation on an existing interface 14 months ago. What should you do to perform the same calculation on a new data collection form?",
+            "options": [
+                "Duplicate the existing Appian object and rename it to include the date of the release that will contain the new object. This follows the best practice of not reusing objects that are more than one (1) year old.",
+                "Reuse the existing Appian object to perform the calculation after validating it works properly for your use case. Reusing the object helps to enforce consistency with application of the formula across the application.",
+                "Duplicate the existing Appian object and reuse the same name. This follows the best practice of maintaining traceability of object creation to developers while avoiding duplication of code."
+            ],
+            "answer": "Reuse the existing Appian object to perform the calculation after validating it works properly for your use case. Reusing the object helps to enforce consistency with application of the formula across the application."
+        },
+        {
+            "question": "In an expression you see the following two code snippets A and B. Do the two code snippets return the same result?",
+            "options": [
+                "No, A returns the text true or false, while B returns the Boolean values TRUE or FALSE.",
+                "No, A returns the Boolean values TRUE or FALSE, while B returns the strings true or false.",
+                "Yes, both code snippets return the exact same Boolean value."
+            ],
+            "answer": "Yes, both code snippets return the exact same Boolean value."
+        },
+        {
+            "question": "You are making changes to a record type named Support Case which has an existing related action titled Update Case. Your customer requests an enhancement to make the update case action easily accessible when viewing the summary of a support case record. What should you do?",
+            "options": [
+                "Configure the Summary record view and add a shortcut to the Update Case-related action.",
+                "Set the visibility of the Update Case-related action to the Summary view.",
+                "Add a new record relationship between the Support Case record type, Summary view, and Update Case-related actions."
+            ],
+            "answer": "Configure the Summary record view and add a shortcut to the Update Case-related action."
+        },
+        {
+            "question": "Which statement about editing interfaces and expression rules is true?",
+            "options": [
+                "Once created, both expression rules and interfaces cannot be renamed.",
+                "Expression rules containing more than 4,000 characters should be converted to interfaces.",
+                "When editing an expression rule, interface components do not render for display."
+            ],
+            "answer": "When editing an expression rule, interface components do not render for display."
+        },
+        {
+            "question": "You created a process model. While testing, the process consumes at least 2000 AMU of process memory for each instance. What are four ways to reduce the overall memory footprint of your process instances? (Choose four.)",
+            "options": [
+                "Reduce your process’ delete and archival interval under Data Management > Automatic Process Clean-Up.",
+                "Split the process into subprocesses so that only a part of the overall process is active.",
+                "Start the process with the memory optimizer option toggled On.",
+                "Reduce the number of process variables.",
+                "Do not store large data chunks like text strings in process variables.",
+                "Compress text into a .ZIP file before storing them in process variables."
+            ],
+            "answer": "Split the process into subprocesses so that only a part of the overall process is active, Reduce the number of process variables, Do not store large data chunks like text strings in process variables, Compress text into a .ZIP file before storing them in process variables."
+        },
+        {
+            "question": "The Create Vehicle process model writes a new vehicle to the database using the Write to Data Store Entity smart service. You provide a null value for the primary key, and the database manages the primary key id as an auto-incremented integer. You need the value of the primary key for the new vehicle to use later in the process model. How should you get the value?",
+            "options": [
+                "Reference AC!StoredValues in the Outputs tab of the Write to Data Store Entity node.",
+                "Add a script task to query for the most recently updated vehicle using loggedInUser().",
+                "Dot notate into the ID field of the process variable written to the database, which is automatically updated by the Write to Data Store Entity smart service."
+            ],
+            "answer": "Reference AC!StoredValues in the Outputs tab of the Write to Data Store Entity node."
+        },
+        {
+            "question": "A user wants to view a bulleted list of information on an interface. Which component should you use?",
+            "options": [
+                "paragraphField",
+                "textField",
+                "richTextDisplayField"
+            ],
+            "answer": "richTextDisplayField"
+        },
+        {
+            "question": "You need to build an expression that takes in a list of values and prefixes the values with ID:. What is a valid definition to the expression?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "B"
+        },
+        {
+            "question": "Which Appian feature helps you access enterprise data quickly, define easily leveraged relationships, and establish custom fields based on available information?",
+            "options": [
+                "Task Management",
+                "Process Analytics",
+                "Record types with data sync enabled"
+            ],
+            "answer": "Record types with data sync enabled"
+        },
+        {
+            "question": "You configure the following rule: While calling this rule in your interface, you receive the following error message: How could you have prevented this error from happening?",
+            "options": [
+                "Call the rule by using a local variable.",
+                "Use the keyword syntax.",
+                "Use Index()"
+            ],
+            "answer": "Use the keyword syntax."
+        },
+        {
+            "question": "You are given a list of VM_Vehicles Custom Data Types (CDT). Which smart service offers the best performance to write the values to the database?",
+            "options": [
+                "Write to Data Store Entity",
+                "Write to Multiple Data Store Entities",
+                "Sync Records"
+            ],
+            "answer": "Sync Records"
+        },
+        {
+            "question": "You need to configure the database to have a one-to-many relationship between ACME_ORDER and ACME_ORDER_ITEM. What is a valid method for configuring this relationship in the database?",
+            "options": [
+                "Add a new field ORDER_ID on the ACME_ORDER_ITEM table and set the field as a foreign key to the ACME_ORDER entry.",
+                "Add a new field ORDER_ITEM_ID on the ACME_ORDER table and set the field as a foreign key of the ACME_ORDER_ITEM entry.",
+                "Add a new field ORDER ITEM_ID on the ACME_ORDER table and set the field as a second primary key of the ACME_ORDER_ITEM entry."
+            ],
+            "answer": "Add a new field ORDER_ID on the ACME_ORDER_ITEM table and set the field as a foreign key to the ACME_ORDER entry."
+        },
+        {
+            "question": "You have a Custom Data Type (CDT), ABC_book, with a constant that refers to its data store entity, ABC_DSE_BOOK. You need to write a query filter for all ABC_book items whose title contains Guide. Which code snippet accomplishes this goal?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "B"
+        },
+        {
+            "question": "You need to quickly view the structure of an application, its packages, and supporting documentation. Which Appian Designer view should you use?",
+            "options": [
+                "Monitor",
+                "Deploy",
+                "Explore"
+            ],
+            "answer": "Explore"
+        },
+        {
+            "question": "What is an Appian best practice for calling a query on your interface?",
+            "options": [
+                "Call the query once on a local variable.",
+                "Call the query everywhere you need it to show data.",
+                "Call the query once on a rule input."
+            ],
+            "answer": "Call the query once on a local variable."
+        },
+        {
+            "question": "You created an expression rule that was deployed to production on January 12, 2022. The object has form type as a rule input, as well as several other rule inputs for characteristics describing the logged in user. Given values for these inputs, the rule returns a set of form instructions for the specified type of form as applicable to the logged in user. What is the most important action to take with regards to the object description?",
+            "options": [
+                "Set an object description that reads: Returns a set of form instructions to display, given the type of form and characteristics of the logged in user.",
+                "Save a rule input of type text for the object called objectDescription, and set a text value that generally describes the object such that other developers could quickly gain understanding of the objects purpose.",
+                "Set an object description that includes any notes you may need if you were to become responsible for providing Production Support on that area of the application in the future. You should also include BP 1/12/2022 Created somewhere in the description."
+            ],
+            "answer": "Set an object description that reads: Returns a set of form instructions to display, given the type of form and characteristics of the logged in user."
+        },
+        {
+            "question": "Which condition must be true in order to establish record type relationships?",
+            "options": [
+                "The record types must have many-to-many relationships.",
+                "All record types in the relationship must be backed by an integration.",
+                "Data sync must be enabled for the record types."
+            ],
+            "answer": "Data sync must be enabled for the record types."
+        },
+        {
+            "question": "What can be used at the top of a page to add visual appeal and serve as an obvious header with an overlay?",
+            "options": [
+                "Box Layout",
+                "Billboard Layout",
+                "Section Layout"
+            ],
+            "answer": "Billboard Layout"
+        },
+        {
+            "question": "What is the prerequisite configuration for adding a process model into site as a tab?",
+            "options": [
+                "Configure Process Model Data Management settings.",
+                "Add process variables into the process model.",
+                "Include a start form in the process model."
+            ],
+            "answer": "Include a start form in the process model."
+        },
+        {
+            "question": "You built a grid field with the data source as a query entity. You want to add a search box to the grid using Appians out-of-the-box functionality. You set the parameter of showSearchBox to True, but the search box is still not appearing. Why is the search box NOT appearing?",
+            "options": [
+                "The search box only appears when data is populated in the grid.",
+                "The grid is on an interface that needs to be placed within a report object.",
+                "The showSearchBox parameter only applies when a record type is used as the source in the data."
+            ],
+            "answer": "The showSearchBox parameter only applies when a record type is used as the source in the data."
+        },
+        {
+            "question": "You want to replace any invalid email addresses in a list of email addresses with the word invalid. A rule already exists within your application which determines if an email address format is valid: MAIL_isValidEmail(). This rule takes in a single email address and returns either True or False. Which code snippet will return the desired output?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "C"
+        },
+        {
+            "question": "You are updating an interface that is used as part of a User Input Task. The associated process model has an activity chained flow that loops back to the User Input Task. The process follows this flow when the user clicks Save on the interface to submit the task. You need to retain the users selection so that the value remains selected after the user clicks Save. Review the following process model diagram: What is the minimum set of variables and/or inputs that need to be configured to keep the users selection?",
+            "options": [
+                "Rule input, activity class parameter, and a process variable",
+                "Local variable and a process variable",
+                "Task parameter and a process variable"
+            ],
+            "answer": "Local variable and a process variable"
+        },
+        {
+            "question": "You are working on an existing process model with three process variables: 1. pv!vehicleID (integer), 2. pv!vehicle(Custom Data Type (CDT), 3. pv!dealershipName (text). You have a script task with an output variable, defined as rule!VIM_getVehicle(vehicleID: pv!vehicleID). The result is saved to pv!vehicle. The rule VIM_getDealershipName() accepts the dealership ID, which is a field on the vehicle CDT, and returns the dealership name. What should you update in the process model to set the value for pv!dealershipName?",
+            "options": [
+                "Move the existing output variable to the inputs tab, and name it vehicle. Add output variable defined as rule!VIM_getDealershipName(ac!vehicle.dealershipId) and save that value to pv!dealershipName.",
+                "Add another output variable defined as rule!VIM_getDealershipName(pv!vehicle.dealershipId) and save that value to pv!dealershipName.",
+                "Add a new script task, and add an input variable defined as rule!VIM_getDealershipName(ac!vehicle.dealershipName) that saves into pv!dealershipName."
+            ],
+            "answer": "Add another output variable defined as rule!VIM_getDealershipName(pv!vehicle.dealershipId) and save that value to pv!dealershipName."
+        },
+        {
+            "question": "You are creating a large, complex interface Which statement describes a best practice for strategizing code organization?",
+            "options": [
+                "Create individual interface objects for each chunk of code that is logically grouped, especially for those that may be reused in other areas of the application.",
+                "Create only one interface object per developer assigned to the feature. This balances the performance cost of calling additional interface objects with the need to prevent developers from overwriting each other.",
+                "Since the components are related, all code should be centralized in a single interface object. This minimizes the performance cost incurred by Appian calling multiple interface objects."
+            ],
+            "answer": "Create individual interface objects for each chunk of code that is logically grouped, especially for those that may be reused in other areas of the application."
+        },
+        {
+            "question": "According to Appian best practices, which button styling is most appropriate on the button labelled “Approve”?",
+            "options": [
+                "Primary",
+                "Secondary",
+                "Destructive"
+            ],
+            "answer": "Primary [1]"
+        },
+        {
+            "question": "Which domain prefix should be used for variables in the interface?",
+            "options": [
+                "ri!",
+                "pv!",
+                "local!"
+            ],
+            "answer": "pv! [2]"
+        },
+        {
+            "question": "You want to prevent a user from submitting a form when an invalid value is entered. What should you do?",
+            "options": [
+                "Wrap the Text field in an if statement and display a red card layout when the value is not valid.",
+                "Use a rich text display field with “STRONG” style and “NEGATIVE” color when the value is not valid.",
+                "In the validations parameter, use an if statement that returns a text string when the value is not valid."
+            ],
+            "answer": "In the validations parameter, use an if statement that returns a text string when the value is not valid [3]."
+        },
+        {
+            "question": "What is the Appian Dev environment used for?",
+            "options": [
+                "Making updates to the app.",
+                "Providing end users access to the finished product.",
+                "User acceptance testing."
+            ],
+            "answer": "Making updates to the app [3]."
+        },
+        {
+            "question": "Which statement reflects an Appian user interface design best practice?",
+            "options": [
+                "Create and use reusable interfaces.",
+                "Use red text to highlight important information.",
+                "Use a section layout within a section layout."
+            ],
+            "answer": "Create and use reusable interfaces [3]."
+        },
+        {
+            "question": "Which variable type is used to store data used within a single node of a process model?",
+            "options": [
+                "Rule Inputs",
+                "Process Variables",
+                "Activity Class Parameters"
+            ],
+            "answer": "Activity Class Parameters [4]"
+        },
+        {
+            "question": "How should you address the requirement of HR Recruiter group not receiving email notifications for the initial processing of job applications, while HR Supervisor group continues receiving emails?",
+            "options": [
+                "Update the user input node in the process model to disable notifications for task assignments.",
+                "Update the settings in the Admin Console to disable outbound email from Appian.",
+                "Update the HR Recruiter group settings to disable email notifications."
+            ],
+            "answer": "Update the user input node in the process model to disable notifications for task assignments [5]."
+        },
+        {
+            "question": "You are using the Delete Records smart service to delete an author record. What are the minimum parameters that need to be passed to the Delete Records smart service?",
+            "options": [
+                "You must pass the following data structure:",
+                "The passed ABC_Author record must be the complete record.",
+                "The passed ABC_Author record data must at least contain the primary key value."
+            ],
+            "answer": "You must pass the following data structure [6]."
+        },
+        {
+            "question": "You need to write code to pull back entries from the abc_book table as CDT objects. You only want 10 entries, but you need to know the total number of entries in the table. Which code snippet accomplishes this goal?",
+            "options": [
+                "A",
+                "B",
+                "C"
+            ],
+            "answer": "A [7]"
+        },
+        {
+            "question": "Which statement regarding the use of rule inputs for expression rules is true?",
+            "options": [
+                "Only basic data types should be used for rule inputs. Custom Data Types (CDTs) or records should always be queried within the expression rule rather than passed in via rule input.",
+                "The data type for rule inputs should be set only for Custom Data Types (CDTs).",
+                "If the value passed in via rule input may be a list of numbers, the rule input must be configured as an “Array”."
+            ],
+            "answer": "If the value passed in via rule input may be a list of numbers, the rule input must be configured as an “Array” [8]."
+        },
+        {
+            "question": "What is the out-of-the-box behavior that indicates a text input field is required?",
+            "options": [
+                "The size of the label font increases to show significance.",
+                "An asterisk (*) appears at the end of the label to notify the user that the field must have a rule.",
+                "The label font of the field goes from normal text to bold in order to draw attention."
+            ],
+            "answer": "An asterisk (*) appears at the end of the label to notify the user that the field must have a rule [9]."
         }
     ]
 }

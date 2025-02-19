@@ -1,6 +1,6 @@
 {
     "timerDuration": 60,
-    "maxNumQuestions": 5,
+    "maxNumQuestions": 60,
     "passingPercentage": 73,
-    "questionsSourceFile": "general-questions.json"
+    "questionsSourceFile": "acd101-questions.json"
 }
