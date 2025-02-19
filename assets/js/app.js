@@ -125,12 +125,29 @@ function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
     const options = questionDiv.querySelectorAll('.option-label');
 
     options.forEach((option, index) => {
-        option.classList.remove('correct', 'incorrect'); // Remove previous highlights
-        if (questions[questionIndex].answer === option.textContent.trim()) {
-            option.classList.add('correct');
+        // Remove previous highlights only if the option is not checked
+        const inputElement = option.querySelector('input');
+        if (!inputElement.checked) {
+            option.classList.remove('correct', 'incorrect');
         }
-        if (selectedOptionIndex === index && selectedOption !== questions[questionIndex].answer) {
-            option.classList.add('incorrect');
+
+        if (Array.isArray(questions[questionIndex].answer)) {
+            // For multiple-answer questions, check if the selected option is in the correct answers array
+            if (selectedOptionIndex === index) {
+                if (questions[questionIndex].answer.includes(selectedOption)) {
+                    option.classList.add('correct');
+                } else {
+                    option.classList.add('incorrect');
+                }
+            }
+        } else {
+            // For single-answer questions, check if the option is the correct answer
+            if (questions[questionIndex].answer === option.textContent.trim()) {
+                option.classList.add('correct');
+            }
+            if (selectedOptionIndex === index && selectedOption !== questions[questionIndex].answer) {
+                option.classList.add('incorrect');
+            }
         }
     });
 }
@@ -152,27 +169,35 @@ function updateTimer() {
         const seconds = timeLeft % 60;
         document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
-} 
+}
 
 function submitQuiz() {
     clearInterval(timer);
 
     let score = 0;
     let totalPossiblePoints = 0;
+    let penaltyFactor = 0.5; // Adjust this to change the penalty severity
 
     questions.forEach((q, index) => {
         if (Array.isArray(q.answer)) {
-            // For multiple-answer questions, each correct answer counts as a point
-            totalPossiblePoints += q.answer.length;
-            if (Array.isArray(answers[index])) {
-                q.answer.forEach(correctAnswer => {
-                    if (answers[index].includes(correctAnswer)) {
-                        score++;
-                    }
-                });
-            }
+            // Multiple-answer question logic
+            let correctAnswers = q.answer; // List of correct answers
+            let incorrectOptions = q.options.filter(option => !correctAnswers.includes(option)); // List of incorrect options
+            let userSelections = Array.isArray(answers[index]) ? answers[index] : [];
+
+            let correctCount = userSelections.filter(ans => correctAnswers.includes(ans)).length;
+            let incorrectCount = userSelections.filter(ans => incorrectOptions.includes(ans)).length;
+
+            totalPossiblePoints += correctAnswers.length;
+
+            // Calculate score with penalty
+            let questionScore = (correctCount / correctAnswers.length) * 100; // Base score
+            let penalty = (incorrectCount * penaltyFactor * (100 / correctAnswers.length)); // Deduction based on incorrect answers
+
+            let finalScore = Math.max(0, questionScore - penalty); // Ensure score does not go negative
+            score += finalScore / 100 * correctAnswers.length; // Normalize score to match point system
         } else {
-            // For single-answer questions, the whole question counts as one point
+            // Single-answer question logic
             totalPossiblePoints++;
             if (answers[index] === q.answer) {
                 score++;
