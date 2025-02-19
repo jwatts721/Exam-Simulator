@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container mt-5">
         <h1 class="text-center" id="title"></h1>
@@ -78,6 +80,7 @@
 
             const questionDiv = document.createElement('div');
             questionDiv.className = 'question';
+            questionDiv.id = 'question-' + index; // Add an id attribute
 
             const questionLabel = document.createElement('label');
             questionLabel.className = 'question-label';
@@ -89,7 +92,7 @@
                 radio.type = 'radio';
                 radio.name = 'question' + index;
                 radio.value = option;
-                radio.onclick = function() {
+                radio.onclick = function () {
                     answers[index] = option;
                     if (document.getElementById('showAnswersCheckbox').checked) {
                         highlightAnswer(index, option, optionIndex);
@@ -114,7 +117,7 @@
         }
 
         function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
-            const questionDiv = document.querySelectorAll('.question')[currentQuestionIndex];
+            const questionDiv = document.getElementById('question-' + questionIndex); // Use the id to select the correct div
             const options = questionDiv.querySelectorAll('.option-label');
 
             options.forEach((option, index) => {
@@ -127,6 +130,19 @@
                 }
             });
         }
+
+        const questionDiv = document.querySelectorAll('.question')[currentQuestionIndex];
+        const options = questionDiv.querySelectorAll('.option-label');
+
+        options.forEach((option, index) => {
+            option.classList.remove('correct', 'incorrect'); // Remove previous highlights
+            if (questions[questionIndex].answer === option.textContent.trim()) {
+                option.classList.add('correct');
+            }
+            if (selectedOptionIndex === index && selectedOption !== questions[questionIndex].answer) {
+                option.classList.add('incorrect');
+            }
+        });
 
         function nextQuestion() {
             currentQuestionIndex++;
@@ -178,4 +194,5 @@
         }
     </script>
 </body>
+
 </html>
