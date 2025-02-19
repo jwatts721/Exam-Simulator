@@ -14,7 +14,7 @@ async function loadConfigAndQuestions() {
         numQuestions = config.maxNumQuestions;
         passingPercentage = config.passingPercentage;
 
-        const questionsResponse = await fetch(`questions-source/${config.questionsSourceFile}`);
+        const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
         const allQuestions = await questionsResponse.json();
 
         // Shuffle the questions and load only the specified number of questions
@@ -43,49 +43,6 @@ function shuffle(array) {
 function displayTitle(title) {
     document.getElementById('title').textContent = title;
 }
-/*
-function displayQuestion(index) {
-    const quizDiv = document.getElementById('quiz');
-    quizDiv.innerHTML = '';
-
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'question';
-    questionDiv.id = 'question-' + index; // Add an id attribute
-
-    const questionLabel = document.createElement('label');
-    questionLabel.className = 'question-label';
-    questionLabel.textContent = (index + 1) + '. ' + questions[index].question;
-    questionDiv.appendChild(questionLabel);
-
-    questions[index].options.forEach((option, optionIndex) => {
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = 'question' + index;
-        radio.value = option;
-        radio.onclick = function () {
-            answers[index] = option;
-            if (document.getElementById('showAnswersCheckbox').checked) {
-                highlightAnswer(index, option, optionIndex);
-            }
-        };
-
-        const radioLabel = document.createElement('label');
-        radioLabel.className = 'option-label';
-        radioLabel.style.marginLeft = '10px';
-        radioLabel.textContent = option;
-        radioLabel.insertBefore(radio, radioLabel.firstChild);
-
-        questionDiv.appendChild(radioLabel);
-    });
-
-    quizDiv.appendChild(questionDiv);
-
-    if (index === questions.length - 1) {
-        document.getElementById('next-button').style.display = 'none';
-        document.getElementById('submit-button').style.display = 'inline';
-    }
-}
-*/
 function displayQuestion(index) {
     const quizDiv = document.getElementById('quiz');
     quizDiv.innerHTML = '';
@@ -195,19 +152,35 @@ function updateTimer() {
         const seconds = timeLeft % 60;
         document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
-}
+} 
 
 function submitQuiz() {
     clearInterval(timer);
 
     let score = 0;
+    let totalPossiblePoints = 0;
+
     questions.forEach((q, index) => {
-        if (answers[index] === q.answer) {
-            score++;
+        if (Array.isArray(q.answer)) {
+            // For multiple-answer questions, each correct answer counts as a point
+            totalPossiblePoints += q.answer.length;
+            if (Array.isArray(answers[index])) {
+                q.answer.forEach(correctAnswer => {
+                    if (answers[index].includes(correctAnswer)) {
+                        score++;
+                    }
+                });
+            }
+        } else {
+            // For single-answer questions, the whole question counts as one point
+            totalPossiblePoints++;
+            if (answers[index] === q.answer) {
+                score++;
+            }
         }
     });
 
-    const percentage = (score / questions.length) * 100;
+    const percentage = (score / totalPossiblePoints) * 100;
     document.getElementById('quiz').style.display = 'none';
     document.getElementById('next-button').style.display = 'none';
     document.getElementById('submit-button').style.display = 'none';
