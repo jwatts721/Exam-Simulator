@@ -1,0 +1,11 @@
+=========================
+OVERVIEW
+=========================
+This script is part of a Node.js application. 
+To install the necessary packages, run:
+
+    npm install 
+
+To start the application, run:
+
+    npm start
