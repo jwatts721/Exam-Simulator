@@ -25,6 +25,16 @@
             "question": "What is the boiling point of water at sea level?",
             "options": ["90°C", "100°C", "110°C", "120°C"],
             "answer": "100°C"
+        },
+        {
+            "question": "Which fall into the category of fruits? (Select all that apply)",
+            "options": ["Tomato", "Cucumber", "Carrot", "Apple", "Banana"],
+            "answer": ["Tomato", "Apple", "Banana"]
+        },
+        {
+            "question": "What are considered mammals? (Select all that apply)",
+            "options": ["Dolphin", "Shark", "Whale", "Octopus", "Seahorse"],
+            "answer": ["Dolphin", "Whale"]
         }
     ]
 }

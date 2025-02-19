@@ -54,7 +54,7 @@
                 "Folder",
                 "Feed"
             ],
-            "answer": "Knowledge Center, Folder"
+            "answer": ["Knowledge Center", "Folder"]
         },
         {
             "question": "Where can an Appian Developer connect with and share their expertise with other Appian Developers?",
@@ -146,7 +146,7 @@
                 "Use a Start Process smart service.",
                 "Run a!startProcess() from a script task."
             ],
-            "answer": "Call a web API, Use a Start Process smart service, Run a!startProcess() from a script task"
+            "answer": ["Call a web API", "Use a Start Process smart service", "Run a!startProcess() from a script task"]
         },
         {
             "question": "You have two record types: ACME_Student and ACME_Class. You need to add a many-to-many relationship between these two record types. What should you do?",
@@ -247,7 +247,8 @@
                 "A valid email address: \"jane.doe@example.com\".",
                 "The mail server is unavailable."
             ],
-            "answer": "An invalid email address that is missing the @-character: \"john.doeexample.com\"., An invalid email address: null., A valid email address: \"jane.doe@example.com\"."
+            "answer": ["An invalid email address that is missing the @-character: \"john.doeexample.com\".", "An invalid email address: null.", "A valid email address: \"jane.doe@example.com\"."]
+            
         },
         {
             "question": "You are creating a new interface object to display a pie chart. The data for the chart is stored in a local variable in the parent interface object which references your child interface. In terms of performance, what is the most efficient method to access the data required for the pie chart?",
@@ -356,7 +357,7 @@
                 "An employee who does not have an account wants to register for their company's vehicle fleet a management system.",
                 "A user needs to submit support requests when they are using their mobile device in areas with bad network coverage."
             ],
-            "answer": "A retail customer wants to conduct a public survey for their recently launched product., An employee who does not have an account wants to register for their company's vehicle fleet a management system."
+            "answer": ["A retail customer wants to conduct a public survey for their recently launched product.", "An employee who does not have an account wants to register for their company's vehicle fleet a management system."]
         },
         {
             "question": "You have two Custom Data Types (CDT): ACME_invoice and ACME_invoiceItem that have a flat relationship. The invoice item table has a field that is a foreign key to the invoice table. You are leveraging the database to automatically generate their primary keys. How should you structure the process model to add a new invoice and the new invoice items to the system?",
@@ -457,7 +458,7 @@
                 "Interface",
                 "Action"
             ],
-            "answer": "Record List, Action, Interface"
+            "answer": ["Record List", "Action", "Interface"]
         },
         {
             "question": "What are the three parts of a test case in Appian? (Choose three.)",
@@ -468,7 +469,7 @@
                 "Context Data",
                 "Test Outputs"
             ],
-            "answer": "Assertion, Test inputs, Test Outputs"
+            "answer": ["Assertion", "Test inputs", "Test Outputs"]
         },
         {
             "question": "A business has large amounts of process data that is difficult for humans to analyze. What is the best Appian feature to help this business gain insights on the data?",
@@ -599,7 +600,7 @@
                 "Do not store large data chunks like text strings in process variables.",
                 "Compress text into a .ZIP file before storing them in process variables."
             ],
-            "answer": "Split the process into subprocesses so that only a part of the overall process is active, Reduce the number of process variables, Do not store large data chunks like text strings in process variables, Compress text into a .ZIP file before storing them in process variables."
+            "answer": ["Split the process into subprocesses so that only a part of the overall process is active", "Reduce the number of process variables", "Do not store large data chunks like text strings in process variables", "Compress text into a .ZIP file before storing them in process variables"]
         },
         {
             "question": "The Create Vehicle process model writes a new vehicle to the database using the Write to Data Store Entity smart service. You provide a null value for the primary key, and the database manages the primary key id as an auto-incremented integer. You need the value of the primary key for the new vehicle to use later in the process model. How should you get the value?",
