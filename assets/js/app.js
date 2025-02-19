@@ -43,7 +43,7 @@ function shuffle(array) {
 function displayTitle(title) {
     document.getElementById('title').textContent = title;
 }
-
+/*
 function displayQuestion(index) {
     const quizDiv = document.getElementById('quiz');
     quizDiv.innerHTML = '';
@@ -77,6 +77,83 @@ function displayQuestion(index) {
 
         questionDiv.appendChild(radioLabel);
     });
+
+    quizDiv.appendChild(questionDiv);
+
+    if (index === questions.length - 1) {
+        document.getElementById('next-button').style.display = 'none';
+        document.getElementById('submit-button').style.display = 'inline';
+    }
+}
+*/
+function displayQuestion(index) {
+    const quizDiv = document.getElementById('quiz');
+    quizDiv.innerHTML = '';
+
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    questionDiv.id = 'question-' + index; // Add an id attribute
+
+    const questionLabel = document.createElement('label');
+    questionLabel.className = 'question-label';
+    questionLabel.textContent = (index + 1) + '. ' + questions[index].question;
+    questionDiv.appendChild(questionLabel);
+
+    if (Array.isArray(questions[index].answer)) {
+        // Render checkboxes for multiple answers
+        questions[index].options.forEach((option, optionIndex) => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'question' + index;
+            checkbox.value = option;
+            checkbox.onclick = function () {
+                if (!answers[index]) {
+                    answers[index] = [];
+                }
+                if (checkbox.checked) {
+                    answers[index].push(option);
+                } else {
+                    const optionIndex = answers[index].indexOf(option);
+                    if (optionIndex > -1) {
+                        answers[index].splice(optionIndex, 1);
+                    }
+                }
+                if (document.getElementById('showAnswersCheckbox').checked) {
+                    highlightAnswer(index, option, optionIndex);
+                }
+            };
+
+            const checkboxLabel = document.createElement('label');
+            checkboxLabel.className = 'option-label';
+            checkboxLabel.style.marginLeft = '10px';
+            checkboxLabel.textContent = option;
+            checkboxLabel.insertBefore(checkbox, checkboxLabel.firstChild);
+
+            questionDiv.appendChild(checkboxLabel);
+        });
+    } else {
+        // Render radio buttons for single answer
+        questions[index].options.forEach((option, optionIndex) => {
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'question' + index;
+            radio.value = option;
+            radio.onclick = function () {
+                answers[index] = option;
+                if (document.getElementById('showAnswersCheckbox').checked) {
+                    highlightAnswer(index, option, optionIndex);
+                }
+            };
+
+            const radioLabel = document.createElement('label');
+            radioLabel.className = 'option-label';
+            radioLabel.style.marginLeft = '10px';
+            radioLabel.textContent = option;
+            radioLabel.insertBefore(radio, radioLabel.firstChild);
+
+            questionDiv.appendChild(radioLabel);
+        });
+    }
 
     quizDiv.appendChild(questionDiv);
 

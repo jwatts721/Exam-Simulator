@@ -1,0 +1,20 @@
+{
+    "appTitle": "General Knowledge Quiz", 
+    "questions": [
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["Earth", "Mars", "Jupiter", "Venus"],
+            "answer": "Mars"
+        },
+        {
+            "question": "Which fall into the category of fruits? (Select all that apply)",
+            "options": ["Tomato", "Cucumber", "Carrot", "Apple", "Banana"],
+            "answer": ["Tomato", "Apple", "Banana"]
+        },
+        {
+            "question": "What are considered mammals? (Select all that apply)",
+            "options": ["Dolphin", "Shark", "Whale", "Octopus", "Seahorse"],
+            "answer": ["Dolphin", "Whale"]
+        }
+    ]
+}
