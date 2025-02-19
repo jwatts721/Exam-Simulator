@@ -1,6 +1,7 @@
 {
+    "appTitle": "Quiz App",
     "timerDuration": 60,
-    "numQuestions": 10,
+    "maxNumQuestions": 5,
     "passingPercentage": 73,
     "questionsSourceFile": "general-questions.json"
 }
