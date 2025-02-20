@@ -21,6 +21,6 @@
             "answer": ["Dolphin", "Whale"]
         }
     ],
-    "inclusions": [],
+    "inclusions": [1],
     "exclusions": []
 }
