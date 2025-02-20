@@ -28,7 +28,7 @@ async function loadConfigAndQuestions() {
             if (exclusions.length > 0 && exclusions.includes(question.id)) {
                 return false;
             }
-            
+
             return !(inclusions.length > 0 && !inclusions.includes(question.id));
         });
 
@@ -117,6 +117,10 @@ function displayQuestion(index) {
                     if (optionIndex > -1) {
                         answers[index].splice(optionIndex, 1);
                     }
+                    // Remove background highlighting when checkbox is unchecked
+                    setTimeout(() => {
+                        checkboxLabel.classList.remove('correct', 'incorrect');
+                    }, 0);
                 }
                 if (document.getElementById('showAnswersCheckbox').checked) {
                     highlightAnswer(index, option, optionIndex);
