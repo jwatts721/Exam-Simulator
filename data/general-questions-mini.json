@@ -2,16 +2,19 @@
     "appTitle": "General Knowledge Mini Quiz", 
     "questions": [
         {
+            "id": 1,
             "question": "Which planet is known as the Red Planet?",
             "options": ["Earth", "Mars", "Jupiter", "Venus"],
             "answer": "Mars"
         },
         {
+            "id": 2,
             "question": "Which fall into the category of fruits? (Select all that apply)",
             "options": ["Tomato", "Cucumber", "Carrot", "Apple", "Banana"],
             "answer": ["Tomato", "Apple", "Banana"]
         },
         {
+            "id": 3,
             "question": "What are considered mammals? (Select all that apply)",
             "options": ["Dolphin", "Shark", "Whale", "Octopus", "Seahorse"],
             "answer": ["Dolphin", "Whale"]
