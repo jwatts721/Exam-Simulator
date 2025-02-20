@@ -228,7 +228,7 @@ function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
             }
         } else {
             // For single-answer questions, check if the option is the correct answer
-            if (questions[questionIndex].answer === option.textContent.trim()) {
+            if (selectedOptionIndex === index && questions[questionIndex].answer === selectedOption) {
                 option.classList.add('correct');
             }
             if (selectedOptionIndex === index && selectedOption !== questions[questionIndex].answer) {
