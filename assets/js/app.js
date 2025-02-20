@@ -38,7 +38,11 @@ async function loadConfigAndQuestions() {
 
         displayTitle(allQuestions.appTitle);
         displayQuestion(currentQuestionIndex);
-        timer = setInterval(updateTimer, 1000);
+        if (!config.disableTimer) {
+            timer = setInterval(updateTimer, 1000);
+        } else {
+            document.getElementById('timer').style.display = 'none';
+        }
     } catch (error) {
         console.error('Error loading config or questions:', error);
         document.getElementById('timer').textContent = 'Error loading timer';

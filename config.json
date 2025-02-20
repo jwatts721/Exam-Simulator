@@ -3,5 +3,6 @@
     "maxNumQuestions": 15,
     "passingPercentage": 73,
     "questionsSourceFile": "general-questions-mini.json",
-    "shuffleQuestions": false
+    "shuffleQuestions": false,
+    "disableTimer": true
 }
