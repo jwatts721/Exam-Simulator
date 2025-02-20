@@ -1,3 +1,4 @@
+let appPrefix = null;
 let questions = [];
 let numQuestions = 0;
 let passingPercentage = 0;
@@ -16,6 +17,7 @@ async function loadConfigAndQuestions() {
 
         const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
         const allQuestions = await questionsResponse.json();
+        appPrefix = allQuestions.appPrefix;
 
         // Shuffle the questions and load only the specified number of questions
         questions = shuffle(allQuestions.questions).slice(0, numQuestions);
@@ -43,6 +45,7 @@ function shuffle(array) {
 function displayTitle(title) {
     document.getElementById('title').textContent = title;
 }
+
 function displayQuestion(index) {
     const quizDiv = document.getElementById('quiz');
     quizDiv.innerHTML = '';
@@ -50,6 +53,37 @@ function displayQuestion(index) {
     const questionDiv = document.createElement('div');
     questionDiv.className = 'question';
     questionDiv.id = 'question-' + index; // Add an id attribute
+
+    // Add a div to display the question index in the upper right-hand corner
+    const questionIndexDiv = document.createElement('div');
+    questionIndexDiv.className = 'question-index';
+    questionIndexDiv.textContent = `ID: ${questions[index].id}`;
+    questionDiv.appendChild(questionIndexDiv);
+
+    // Check for image
+    const imagePrefix = `${appPrefix}${questions[index].id}`; // Use template literals for better readability
+    const imageExtensions = ['png', 'jpg'];
+    let imageFound = false;
+
+    imageExtensions.forEach(extension => {
+        if (!imageFound) {
+            const imagePath = `assets/images/${imagePrefix}.${extension}`;
+            fetch(imagePath, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        const img = document.createElement('img');
+                        img.src = imagePath;
+                        img.alt = 'Question Image';
+                        img.className = 'question-image';
+                        img.style.maxWidth = '50%'; // Restrict the size of the image
+                        img.style.maxHeight = '50%'; // Restrict the size of the image
+                        img.style.height = 'auto';
+                        questionDiv.prepend(img);
+                        imageFound = true;
+                    }
+                });
+        }
+    });
 
     const questionLabel = document.createElement('label');
     questionLabel.className = 'question-label';

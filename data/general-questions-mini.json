@@ -1,5 +1,6 @@
 {
     "appTitle": "General Knowledge Mini Quiz", 
+    "appPrefix": "GKMQ",
     "questions": [
         {
             "id": 1,

@@ -1,5 +1,6 @@
 {
-    "appTitle": "General Knowledge Quiz", 
+    "appTitle": "General Knowledge Quiz",
+    "appPrefix": "GKQ",
     "questions": [
         {
             "id": 1,

@@ -3,6 +3,14 @@ body {
     font-family: Arial, sans-serif;
 }
 .question { margin-bottom: 20px; }
+.question-index {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
 .timer { font-weight: bold; position: absolute; top: 10px; right: 10px; }
 .question-label { font-weight: bold; display: block; margin-top: 10px; }
 .option-label { margin-left: 10px; display: block; }
