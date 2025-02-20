@@ -32,12 +32,8 @@ async function loadConfigAndQuestions() {
             return !(inclusions.length > 0 && !inclusions.includes(question.id));
         });
 
-        // TODO: Clean up...
-        console.log(filteredQuestions);
-
-        // Shuffle the questions and load only the specified number of questions
-        //questions = shuffle(allQuestions.questions).slice(0, numQuestions);
-        questions = shuffle(filteredQuestions).slice(0, numQuestions);
+        // If configured, shuffle the questions and load only the specified number of questions
+        questions = config.shuffleQuestions ? shuffle(filteredQuestions).slice(0, numQuestions) : filteredQuestions.slice(0, numQuestions);
         answers = Array(questions.length).fill(null);
 
         displayTitle(allQuestions.appTitle);

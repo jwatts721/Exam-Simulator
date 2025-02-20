@@ -16,6 +16,7 @@ Options available:
 - maxNumQuestions - the total amount of questions in the exam
 - passingPercentage - the percentage for passing the exam
 - questionsSourceFile - the source file for all of the questions
+- shuffleQuestions - shuffle the questions or display them in the order of the questions file
 
 The questions in the questions file should have the following format:
 Single Answer

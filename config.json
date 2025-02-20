@@ -2,5 +2,6 @@
     "timerDuration": 15,
     "maxNumQuestions": 15,
     "passingPercentage": 73,
-    "questionsSourceFile": "general-questions-mini.json"
+    "questionsSourceFile": "general-questions-mini.json",
+    "shuffleQuestions": false
 }
