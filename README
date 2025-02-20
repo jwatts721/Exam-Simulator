@@ -16,3 +16,38 @@ Options available:
 - maxNumQuestions - the total amount of questions in the exam
 - passingPercentage - the percentage for passing the exam
 - questionsSourceFile - the source file for all of the questions
+
+The questions in the questions file should have the following format:
+Single Answer
+{
+    "id": 1,
+    "question": "What is the answer?",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "answer": "Option B"
+}
+
+Multiple Answers
+{
+    "id": 2,
+    "question": "What is the answer? (Select all that apply)",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "answer": ["Option A", "Option B"]
+}
+
+The following options are available for the questions file:
+- appTitle - this is optional, but is used to display at the top of the app
+- appPrefix - this is used for image display. Images should be prefixed with 
+- inclusions - IDs of the questions you want to include. Only these questions will be displayed.
+- exclusions - IDs of the questions you want to exclude. These questions will not be displayed.
+
+It is recommended NOT to set inclusions and exclusions of the same IDs at the same time. 
+
+Image Naming Conventions
+If there are images that are part of your question and answers, you should consider the following:
+- If an image is displayed as part of the question, the image should be named as follows:
+    <appPrefix><question.id>.jpg (or .png)
+
+- If images are displayed as answers, the images should be named as follows:
+    <appPrefix><question.id>_a.jpg (or .png)
+    <appPrefix><question.id>_b.jpg
+    <appPrefix><question.id>_c.jpg

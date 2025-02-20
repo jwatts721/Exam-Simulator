@@ -20,5 +20,7 @@
             "options": ["Dolphin", "Shark", "Whale", "Octopus", "Seahorse"],
             "answer": ["Dolphin", "Whale"]
         }
-    ]
+    ],
+    "inclusions": [],
+    "exclusions": []
 }

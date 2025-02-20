@@ -1,5 +1,7 @@
 let appPrefix = null;
 let questions = [];
+let inclusions = [];
+let exclusions = [];
 let numQuestions = 0;
 let passingPercentage = 0;
 let currentQuestionIndex = 0;
@@ -18,9 +20,24 @@ async function loadConfigAndQuestions() {
         const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
         const allQuestions = await questionsResponse.json();
         appPrefix = allQuestions.appPrefix;
+        inclusions = allQuestions.inclusions;
+        exclusions = allQuestions.exclusions;
+
+        // Filter questions based on inclusions and exclusions, exclusions take precedence
+        let filteredQuestions = allQuestions.questions.filter(question => {
+            if (exclusions.length > 0 && exclusions.includes(question.id)) {
+                return false;
+            }
+            
+            return !(inclusions.length > 0 && !inclusions.includes(question.id));
+        });
+
+        // TODO: Clean up...
+        console.log(filteredQuestions);
 
         // Shuffle the questions and load only the specified number of questions
-        questions = shuffle(allQuestions.questions).slice(0, numQuestions);
+        //questions = shuffle(allQuestions.questions).slice(0, numQuestions);
+        questions = shuffle(filteredQuestions).slice(0, numQuestions);
         answers = Array(questions.length).fill(null);
 
         displayTitle(allQuestions.appTitle);
