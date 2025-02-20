@@ -1,6 +1,7 @@
 body {
     background-color: hsl(0, 0%, 97%); /* Light gray background color */
     font-family: Arial, sans-serif;
+    padding-bottom: 50px;
 }
 .question { margin-bottom: 20px; }
 .question-index {
