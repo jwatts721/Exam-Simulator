@@ -75,28 +75,20 @@ function displayQuestion(index) {
 
     // Check for image
     const imagePrefix = `${appPrefix}${questions[index].id}`; // Use template literals for better readability
-    const imageExtensions = ['png', 'jpg'];
-    let imageFound = false;
-
-    imageExtensions.forEach(extension => {
-        if (!imageFound) {
-            const imagePath = `assets/images/${imagePrefix}.${extension}`;
-            fetch(imagePath, { method: 'HEAD' })
-                .then(response => {
-                    if (response.ok) {
-                        const img = document.createElement('img');
-                        img.src = imagePath;
-                        img.alt = 'Question Image';
-                        img.className = 'question-image';
-                        img.style.maxWidth = '50%'; // Restrict the size of the image
-                        img.style.maxHeight = '50%'; // Restrict the size of the image
-                        img.style.height = 'auto';
-                        questionDiv.prepend(img);
-                        imageFound = true;
-                    }
-                });
-        }
-    });
+    const imagePath = `assets/images/${imagePrefix}.jpg`;
+    fetch(imagePath, { method: 'HEAD' })
+        .then(response => {
+            if (response.ok) {
+                const img = document.createElement('img');
+                img.src = imagePath;
+                img.alt = 'Question Image';
+                img.className = 'question-image';
+                img.style.maxWidth = '50%'; // Restrict the size of the image
+                img.style.maxHeight = '50%'; // Restrict the size of the image
+                img.style.height = 'auto';
+                questionDiv.prepend(img);
+            }
+        });
 
     const questionLabel = document.createElement('label');
     questionLabel.className = 'question-label';
@@ -130,10 +122,32 @@ function displayQuestion(index) {
             const checkboxLabel = document.createElement('label');
             checkboxLabel.className = 'option-label';
             checkboxLabel.style.marginLeft = '10px';
-            checkboxLabel.textContent = option;
-            checkboxLabel.insertBefore(checkbox, checkboxLabel.firstChild);
 
-            questionDiv.appendChild(checkboxLabel);
+            // Check for image answer
+            const answerImagePath = `assets/images/${imagePrefix}_${String.fromCharCode(97 + optionIndex)}.jpg`;
+            fetch(answerImagePath, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        const img = document.createElement('img');
+                        img.src = answerImagePath;
+                        img.alt = 'Answer Image';
+                        img.className = 'answer-image';
+                        img.style.maxWidth = '50%'; // Restrict the size of the image
+                        img.style.maxHeight = '50%'; // Restrict the size of the image
+                        img.style.height = 'auto';
+                        checkboxLabel.appendChild(img);
+                    } else {
+                        checkboxLabel.textContent = option;
+                        console.log(`Image not found for option ${optionIndex + 1} of question ${index + 1}`);
+                    }
+                    checkboxLabel.insertBefore(checkbox, checkboxLabel.firstChild);
+                    questionDiv.appendChild(checkboxLabel);
+                })
+                .catch(() => {
+                    checkboxLabel.textContent = option;
+                    checkboxLabel.insertBefore(checkbox, checkboxLabel.firstChild);
+                    questionDiv.appendChild(checkboxLabel);
+                });
         });
     } else {
         // Render radio buttons for single answer
@@ -152,10 +166,31 @@ function displayQuestion(index) {
             const radioLabel = document.createElement('label');
             radioLabel.className = 'option-label';
             radioLabel.style.marginLeft = '10px';
-            radioLabel.textContent = option;
-            radioLabel.insertBefore(radio, radioLabel.firstChild);
 
-            questionDiv.appendChild(radioLabel);
+            // Check for image answer
+            const answerImagePath = `assets/images/${imagePrefix}_${String.fromCharCode(97 + optionIndex)}.jpg`;
+            fetch(answerImagePath, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        const img = document.createElement('img');
+                        img.src = answerImagePath;
+                        img.alt = 'Answer Image';
+                        img.className = 'answer-image';
+                        img.style.maxWidth = '50%'; // Restrict the size of the image
+                        img.style.maxHeight = '50%'; // Restrict the size of the image
+                        img.style.height = 'auto';
+                        radioLabel.appendChild(img);
+                    } else {
+                        radioLabel.textContent = option;
+                    }
+                    radioLabel.insertBefore(radio, radioLabel.firstChild);
+                    questionDiv.appendChild(radioLabel);
+                })
+                .catch(() => {
+                    radioLabel.textContent = option;
+                    radioLabel.insertBefore(radio, radioLabel.firstChild);
+                    questionDiv.appendChild(radioLabel);
+                });
         });
     }
 
