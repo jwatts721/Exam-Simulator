@@ -1,13 +1,19 @@
+let appTitle = null;
 let appPrefix = null;
-let questions = [];
 let inclusions = [];
 let exclusions = [];
 let numQuestions = 0;
 let passingPercentage = 0;
-let currentQuestionIndex = 0;
 let timer;
 let timeLeft;
+let currentQuestionIndex = 0;
+let questions = [];
 let answers = [];
+const questionData = {
+    currentQuestionIndex: 0,
+    questions: [],
+    answers: []
+}
 
 async function loadConfigAndQuestions() {
     try {
@@ -17,32 +23,16 @@ async function loadConfigAndQuestions() {
         numQuestions = config.maxNumQuestions;
         passingPercentage = config.passingPercentage;
 
-        const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
-        const allQuestions = await questionsResponse.json();
-        appPrefix = allQuestions.appPrefix;
-        inclusions = allQuestions.inclusions;
-        exclusions = allQuestions.exclusions;
-
-        // Filter questions based on inclusions and exclusions, exclusions take precedence
-        let filteredQuestions = allQuestions.questions.filter(question => {
-            if (exclusions.length > 0 && exclusions.includes(question.id)) {
-                return false;
-            }
-
-            return !(inclusions.length > 0 && !inclusions.includes(question.id));
-        });
-
-        // If configured, shuffle the questions and load only the specified number of questions
-        questions = config.shuffleQuestions ? shuffle(filteredQuestions).slice(0, numQuestions) : filteredQuestions.slice(0, numQuestions);
-        answers = Array(questions.length).fill(null);
-
-        displayTitle(allQuestions.appTitle);
-        displayQuestion(currentQuestionIndex);
         if (!config.disableTimer) {
             timer = setInterval(updateTimer, 1000);
-        } else {
+            document.getElementById('reset-button').style.display = 'none';
+        } else { // Timer disabled, values should be retreived from storage, if it exists
             document.getElementById('timer').style.display = 'none';
         }
+        await retrieveAndSetQuestionData(config);
+
+        displayTitle(appTitle);
+        displayQuestion(currentQuestionIndex);
     } catch (error) {
         console.error('Error loading config or questions:', error);
         document.getElementById('timer').textContent = 'Error loading timer';
@@ -245,6 +235,7 @@ function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
+        storeQuestionData();
         displayQuestion(currentQuestionIndex);
     }
 }
@@ -312,5 +303,50 @@ function submitQuiz() {
     } else {
         result.style.color = 'red';
         result.textContent += ' - Failed';
+    }
+    localStorage.clear();
+}
+
+// Function to reset the test
+function resetQuiz() {
+    localStorage.clear();
+    window.location.reload();
+}
+
+// Function to store current question and answered questions in localStorage
+function storeQuestionData() {
+    questionData.questions = questions;
+    questionData.answers = answers;
+    questionData.currentQuestionIndex = currentQuestionIndex;
+    localStorage.setItem('questionData', JSON.stringify(questionData));
+}
+
+// Function to retrieve and set current question from localStorage
+async function retrieveAndSetQuestionData(config) {
+    const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
+    const allQuestions = await questionsResponse.json();
+    appTitle = allQuestions.appTitle;
+    appPrefix = allQuestions.appPrefix;
+    inclusions = allQuestions.inclusions;
+    exclusions = allQuestions.exclusions;
+
+    // Filter questions based on inclusions and exclusions, exclusions take precedence
+    let filteredQuestions = allQuestions.questions.filter(question => {
+        if (exclusions.length > 0 && exclusions.includes(question.id)) {
+            return false;
+        }
+
+        return !(inclusions.length > 0 && !inclusions.includes(question.id));
+    });
+
+    const storedQuestionData = JSON.parse(localStorage.getItem('questionData'));
+
+    if (config.disableTimer && storedQuestionData !== null) {
+        questions = storedQuestionData.questions;
+        answers = storedQuestionData.answers;
+        currentQuestionIndex = storedQuestionData.currentQuestionIndex;
+    } else {
+        questions = config.shuffleQuestions ? shuffle(filteredQuestions).slice(0, numQuestions) : filteredQuestions.slice(0, numQuestions);
+        answers = Array(questions.length).fill(null);
     }
 }
