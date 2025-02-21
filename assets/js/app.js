@@ -133,6 +133,7 @@ function displayQuestion(index) {
                         img.style.maxWidth = '50%'; // Restrict the size of the image
                         img.style.maxHeight = '50%'; // Restrict the size of the image
                         img.style.height = 'auto';
+                        checkboxLabel.innerHTML = `${option}<br>`;
                         checkboxLabel.appendChild(img);
                     } else {
                         checkboxLabel.textContent = option;
@@ -177,6 +178,7 @@ function displayQuestion(index) {
                         img.style.maxWidth = '50%'; // Restrict the size of the image
                         img.style.maxHeight = '50%'; // Restrict the size of the image
                         img.style.height = 'auto';
+                        radioLabel.innerHTML = `${option}<br>`;
                         radioLabel.appendChild(img);
                     } else {
                         radioLabel.textContent = option;
