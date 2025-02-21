@@ -86,7 +86,7 @@ function displayQuestion(index) {
 
     const questionLabel = document.createElement('label');
     questionLabel.className = 'question-label';
-    questionLabel.textContent = (index + 1) + '. ' + questions[index].question;
+    questionLabel.innerHTML = questions[index].question;
     questionDiv.appendChild(questionLabel);
 
     if (Array.isArray(questions[index].answer)) {
