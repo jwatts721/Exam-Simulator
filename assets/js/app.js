@@ -23,17 +23,19 @@ async function loadConfigAndQuestions() {
         numQuestions = config.maxNumQuestions;
         passingPercentage = config.passingPercentage;
 
+        await retrieveAndSetQuestionData(config);
         if (!config.disableTimer) {
-            timer = setInterval(updateTimer, 1000);
             document.getElementById('showAnswersCheckboxContainer').style.display = 'none';
             document.getElementById('reset-button').style.display = 'none';
+            document.getElementById('start-button').style.display = 'inline';
         } else { // Timer disabled, values should be retreived from storage, if it exists
-            document.getElementById('timer').style.display = 'none';
-        }
-        await retrieveAndSetQuestionData(config);
+            document.getElementById('start-button').style.display = 'none';
+            document.getElementById('reset-button').style.display = 'inline';
+            displayQuestion(currentQuestionIndex);
+            console.log('Current question index:', currentQuestionIndex);
+        }        
 
         displayTitle(appTitle);
-        displayQuestion(currentQuestionIndex);
     } catch (error) {
         console.error('Error loading config or questions:', error);
         document.getElementById('timer').textContent = 'Error loading timer';
@@ -41,6 +43,13 @@ async function loadConfigAndQuestions() {
 }
 
 window.onload = loadConfigAndQuestions;
+
+function startTimer() {
+    // Start the timer and display the first question
+    timer = setInterval(updateTimer, 1000);
+    displayQuestion(currentQuestionIndex);
+    document.getElementById('next-button').style.display = 'inline';
+}
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -312,7 +321,7 @@ function submitQuiz() {
 }
 
 // Function to reset the test
-function resetQuiz() {
+function resetTest() {
     localStorage.clear();
     window.location.reload();
 }

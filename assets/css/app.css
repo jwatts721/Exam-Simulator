@@ -12,8 +12,8 @@ body {
     font-weight: bold;
     color: #333;
 }
-.timer { font-weight: bold; position: absolute; top: 10px; right: 10px; }
-.reset-button { position: absolute; top: 10px; right: 100px; }
+.header-controls { font-weight: bold; position: absolute; top: 10px; right: 10px; }
+#start-button, #reset-button, #next-button { display: none; }
 .question-label { font-weight: bold; display: block; margin-top: 10px; }
 .option-label { margin-left: 10px; display: block; }
 .correct { background-color: #d4edda; } /* Bootstrap success background */
