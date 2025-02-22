@@ -324,14 +324,29 @@ function storeQuestionData() {
     localStorage.setItem('questionData', JSON.stringify(questionData));
 }
 
+function parseRange(rangeArray) {
+    const result = [];
+    rangeArray.forEach(part => {
+        if (typeof part === 'string' && part.includes('-')) {
+            const [start, end] = part.split('-').map(Number);
+            for (let i = start; i <= end; i++) {
+                result.push(i);
+            }
+        } else {
+            result.push(Number(part));
+        }
+    });
+    return result;
+}
+
 // Function to retrieve and set current question from localStorage
 async function retrieveAndSetQuestionData(config) {
     const questionsResponse = await fetch(`data/${config.questionsSourceFile}`);
     const allQuestions = await questionsResponse.json();
     appTitle = allQuestions.appTitle;
     appPrefix = allQuestions.appPrefix;
-    inclusions = allQuestions.inclusions;
-    exclusions = allQuestions.exclusions;
+    inclusions = parseRange(allQuestions.inclusions);
+    exclusions = parseRange(allQuestions.exclusions);
 
     // Filter questions based on inclusions and exclusions, exclusions take precedence
     let filteredQuestions = allQuestions.questions.filter(question => {
