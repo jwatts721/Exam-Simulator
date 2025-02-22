@@ -50,6 +50,7 @@ function shuffle(array) {
 }
 
 function displayTitle(title) {
+    document.getElementsByTagName('title')[0].textContent = title;
     document.getElementById('title').textContent = title;
 }
 
