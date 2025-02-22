@@ -25,6 +25,7 @@ async function loadConfigAndQuestions() {
 
         if (!config.disableTimer) {
             timer = setInterval(updateTimer, 1000);
+            document.getElementById('showAnswersCheckboxContainer').style.display = 'none';
             document.getElementById('reset-button').style.display = 'none';
         } else { // Timer disabled, values should be retreived from storage, if it exists
             document.getElementById('timer').style.display = 'none';
