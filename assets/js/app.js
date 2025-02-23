@@ -356,11 +356,11 @@ function displayReview() {
         questionElement.classList.add('mb-3');
 
         const questionText = document.createElement('p');
-        questionText.textContent = `${index + 1}. ${q.question}`;
+        questionText.innerHTML = `${index + 1}. ${q.question}`;
         questionElement.appendChild(questionText);
 
         const userAnswerText = document.createElement('p');
-        userAnswerText.textContent = `Your answer: ${q.userAnswer}`;
+        userAnswerText.innerHTML = `Your answer: ${q.userAnswer}`;
         const hasArrayAnswers = Array.isArray(q.userAnswer) && Array.isArray(q.correctAnswer);
         let hasCorrectAnswer = false;
 
