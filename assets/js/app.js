@@ -32,7 +32,6 @@ async function loadConfigAndQuestions() {
             document.getElementById('start-button').style.display = 'none';
             document.getElementById('reset-button').style.display = 'inline';
             displayQuestion(currentQuestionIndex);
-            console.log('Current question index:', currentQuestionIndex);
         }        
 
         displayTitle(appTitle);
@@ -48,7 +47,6 @@ function startTimer() {
     // Start the timer and display the first question
     timer = setInterval(updateTimer, 1000);
     displayQuestion(currentQuestionIndex);
-    document.getElementById('next-button').style.display = 'inline';
 }
 
 function shuffle(array) {
@@ -207,12 +205,13 @@ function displayQuestion(index) {
 
     quizDiv.appendChild(questionDiv);
 
+    document.getElementById('next-button').style.display = 'inline';
+
     if (index === questions.length - 1) {
         document.getElementById('next-button').style.display = 'none';
         document.getElementById('submit-button').style.display = 'inline';
     }
 }
-
 function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
     const questionDiv = document.getElementById('question-' + questionIndex); // Use the id to select the correct div
     const options = questionDiv.querySelectorAll('.option-label');
@@ -256,7 +255,7 @@ function nextQuestion() {
 function updateTimer() {
     if (timeLeft <= 0) {
         clearInterval(timer);
-        submitQuiz();
+        submitTest();
     } else {
         timeLeft--;
         const minutes = Math.floor(timeLeft / 60);
@@ -265,7 +264,7 @@ function updateTimer() {
     }
 }
 
-function submitQuiz() {
+function submitTest() {
     clearInterval(timer);
 
     let score = 0;
@@ -317,7 +316,72 @@ function submitQuiz() {
         result.style.color = 'red';
         result.textContent += ' - Failed';
     }
+
+    displayReview();
+
     localStorage.clear();
+}
+
+
+function displayReview() {
+    const reviewContainer = document.getElementById('review');
+    reviewContainer.innerHTML = ''; // Clear previous content
+
+    // Initialize an array for the evaluated questions
+    const evaluatedQuestions = [];
+
+    questions.forEach((q, index) => {
+        // Create an object to store question details
+        const questionDetails = {
+            question: q.question,
+            correctAnswer: q.answer,
+            userAnswer: answers[index]
+        };
+
+        // Add the question details to the evaluatedQuestions array
+        evaluatedQuestions.push(questionDetails);
+    });
+
+    evaluatedQuestions.forEach((q, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('mb-3');
+
+        const questionText = document.createElement('p');
+        questionText.textContent = `${index + 1}. ${q.question}`;
+        questionElement.appendChild(questionText);
+
+        const userAnswerText = document.createElement('p');
+        userAnswerText.textContent = `Your answer: ${q.userAnswer}`;
+        const hasArrayAnswers = Array.isArray(q.userAnswer) && Array.isArray(q.correctAnswer);
+        let hasCorrectAnswer = false;
+
+        if (!hasArrayAnswers && q.userAnswer === q.correctAnswer) { // Single answer question
+            userAnswerText.classList.add('text-success');
+            hasCorrectAnswer = true;
+        }
+        
+        if (hasArrayAnswers) { // Multiple answer question
+            // Check if all user answers are correct
+            const allUserAnswersCorrect = q.userAnswer.every(answer => q.correctAnswer.includes(answer));
+            // Check if all correct answers are selected
+            const allCorrectAnswersSelected = q.correctAnswer.every(answer => q.userAnswer.includes(answer));
+            if (allUserAnswersCorrect && allCorrectAnswersSelected) {
+                userAnswerText.classList.add('text-success');
+                hasCorrectAnswer = true;
+            }  
+        }          
+
+        if (!hasCorrectAnswer) {
+            userAnswerText.classList.add('text-danger');
+            const correctAnswerText = document.createElement('p');
+            correctAnswerText.textContent = `Correct answer: ${q.correctAnswer}`;
+            correctAnswerText.classList.add('text-success');
+            questionElement.appendChild(correctAnswerText);
+        }
+        questionElement.appendChild(userAnswerText);
+
+        reviewContainer.appendChild(questionElement);
+    });
 }
 
 // Function to reset the test
