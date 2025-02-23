@@ -342,6 +342,7 @@ function displayReview() {
         evaluatedQuestions.push(questionDetails);
     });
 
+    let correctCount = 0, incorrectCount = 0;
     evaluatedQuestions.forEach((q, index) => {
         const questionElement = document.createElement('div');
         questionElement.classList.add('mb-3');
@@ -358,6 +359,7 @@ function displayReview() {
         if (!hasArrayAnswers && q.userAnswer === q.correctAnswer) { // Single answer question
             userAnswerText.classList.add('text-success');
             hasCorrectAnswer = true;
+            correctCount++;
         }
         
         if (hasArrayAnswers) { // Multiple answer question
@@ -368,6 +370,7 @@ function displayReview() {
             if (allUserAnswersCorrect && allCorrectAnswersSelected) {
                 userAnswerText.classList.add('text-success');
                 hasCorrectAnswer = true;
+                correctCount++;
             }  
         }          
 
@@ -377,11 +380,19 @@ function displayReview() {
             correctAnswerText.textContent = `Correct answer: ${q.correctAnswer}`;
             correctAnswerText.classList.add('text-success');
             questionElement.appendChild(correctAnswerText);
+            incorrectCount++;
         }
         questionElement.appendChild(userAnswerText);
 
         reviewContainer.appendChild(questionElement);
     });
+
+    // Display total correct and incorrect counts
+    const result = document.getElementById('result');
+    const summaryText = document.createElement('p');
+    summaryText.id = 'summaryText';
+    summaryText.innerHTML = `<span class="correct-count">Total Correct: ${correctCount}</span> <span class="incorrect-count">Total Incorrect: ${incorrectCount}</span>`;
+    result.append(summaryText);
 }
 
 // Function to reset the test
