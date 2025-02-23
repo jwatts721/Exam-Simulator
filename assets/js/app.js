@@ -391,7 +391,9 @@ function displayReview() {
     const result = document.getElementById('result');
     const summaryText = document.createElement('p');
     summaryText.id = 'summaryText';
-    summaryText.innerHTML = `<span class="correct-count">Total Correct: ${correctCount}</span> <span class="incorrect-count">Total Incorrect: ${incorrectCount}</span>`;
+    if (correctCount > 0 && incorrectCount > 0) {
+        summaryText.innerHTML = `<span class="correct-count">Total Correct: ${correctCount}</span><span class="incorrect-count">Total Incorrect: ${incorrectCount}</span>`;
+    }
     result.append(summaryText);
 }
 
