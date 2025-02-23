@@ -63,6 +63,8 @@ function displayTitle(title) {
 }
 
 function displayQuestion(index) {
+    enableNextAndSubmitButtons(false); // Disable Next and Submit buttons each time a question is displayed
+
     const quizDiv = document.getElementById('quiz');
     quizDiv.innerHTML = '';
 
@@ -128,6 +130,14 @@ function displayQuestion(index) {
                 if (document.getElementById('showAnswersCheckbox').checked) {
                     highlightAnswer(index, option, optionIndex);
                 }
+
+                // If any checkbox is checked, enable the Next and Submit buttons
+                const anyChecked = Array.from(document.querySelectorAll(`input[name="question${index}"]`)).some(input => input.checked);
+                enableNextAndSubmitButtons(anyChecked);
+                // If no checkboxes are checked, disable the Next and Submit buttons
+                if (!anyChecked) {
+                    enableNextAndSubmitButtons(false);
+                }
             };
 
             const checkboxLabel = document.createElement('label');
@@ -173,6 +183,7 @@ function displayQuestion(index) {
                 if (document.getElementById('showAnswersCheckbox').checked) {
                     highlightAnswer(index, option, optionIndex);
                 }
+                enableNextAndSubmitButtons(true); // Enable Next and Submit buttons when an answer is selected        
             };
 
             const radioLabel = document.createElement('label');
@@ -216,6 +227,17 @@ function displayQuestion(index) {
         document.getElementById('submit-button').style.display = 'inline';
     }
 }
+
+function enableNextAndSubmitButtons(enable) {
+    if (enable || typeof enable == 'undefined') {
+        document.getElementById('next-button').removeAttribute('disabled');
+        document.getElementById('submit-button').removeAttribute('disabled');
+        return;
+    }
+    document.getElementById('next-button').setAttribute('disabled', 'true');
+    document.getElementById('submit-button').setAttribute('disabled', 'true');
+}
+
 function highlightAnswer(questionIndex, selectedOption, selectedOptionIndex) {
     const questionDiv = document.getElementById('question-' + questionIndex); // Use the id to select the correct div
     const options = questionDiv.querySelectorAll('.option-label');
