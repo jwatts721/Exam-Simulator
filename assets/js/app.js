@@ -71,6 +71,10 @@ function displayQuestion(index) {
     questionDiv.id = 'question-' + index; // Add an id attribute
 
     // Add a div to display the question index in the upper right-hand corner
+    const questionNumberDiv = document.getElementById('question-number');
+    questionNumberDiv.textContent = `Question ${index + 1} of ${questions.length}`;
+    questionNumberDiv.style.display = 'block'; // Ensure the div is visible
+
     const questionIndexDiv = document.createElement('div');
     questionIndexDiv.className = 'question-index';
     questionIndexDiv.textContent = `ID: ${questions[index].id}`;
@@ -324,6 +328,10 @@ function submitTest() {
 
 
 function displayReview() {
+    // Hide the question number
+    const questionNumberDiv = document.getElementById('question-number');
+    questionNumberDiv.style.display = 'none';
+
     const reviewContainer = document.getElementById('review');
     reviewContainer.innerHTML = ''; // Clear previous content
 

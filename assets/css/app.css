@@ -31,6 +31,15 @@ body {
     display: none;
 }
 
+div#question-number {
+    background-color: #d4d4d4;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: none;
+}
+
 .question-label {
     font-weight: bold;
     display: block;
