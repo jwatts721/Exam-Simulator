@@ -1,3 +1,4 @@
+let config = null;
 let appTitle = null;
 let appPrefix = null;
 let inclusions = [];
@@ -18,7 +19,7 @@ const questionData = {
 async function loadConfigAndQuestions() {
     try {
         const configResponse = await fetch('config.json');
-        const config = await configResponse.json();
+        config = await configResponse.json();
         timeLeft = config.timerDuration * 60;
         numQuestions = config.maxNumQuestions;
         passingPercentage = config.passingPercentage;
@@ -424,6 +425,9 @@ function displayReview() {
     if (correctCount > 0 && incorrectCount > 0) {
         summaryText.innerHTML = `<span class="correct-count">Total Correct: ${correctCount}</span><span class="incorrect-count">Total Incorrect: ${incorrectCount}</span>`;
     }
+    const totalTestTime = Math.floor((config.timerDuration * 60 - timeLeft) / 60) + ':' + ((config.timerDuration * 60 - timeLeft) % 60 < 10 ? '0' : '') + (config.timerDuration * 60 - timeLeft) % 60;
+    summaryText.innerHTML += `<br>Total Test Time: ${totalTestTime}`;
+    
     result.append(summaryText);
 }
 
